@@ -46,6 +46,9 @@ async function startGeneration() {
         // Fetch all verse metadata from Quran.com API
         const versesData = await quranAPI.getVersesWithAudio(surahNumber, reciterId);
         
+        console.log(`Total verses fetched: ${versesData.length}`);
+        console.log(`Sample verse data:`, versesData[0]);
+        
         for (let verseIndex = 0; verseIndex < versesData.length; verseIndex++) {
             if (!isGenerating) break;
 
@@ -66,16 +69,22 @@ async function startGeneration() {
                 audioProcessor
             );
 
-            // Add verse metadata
+            // ✅ FIXED: Extract text data correctly from API response
             const completeData = {
                 id: parseInt(verseNumber),
                 ayah: parseInt(verseNumber),
                 arabic: verseData.text_uthmani || verseData.text_imlaei || "",
-                transliteration: verseData.transliteration?.text || "",
-                translation: verseData.translations?.[0]?.text || "",
+                transliteration: verseData.transliteration && verseData.transliteration.text ? verseData.transliteration.text : "",
+                translation: verseData.translations && verseData.translations.length > 0 ? verseData.translations[0].text : "",
                 audioUrl: fingerprint.audioUrl,
                 fingerprint: fingerprint.fingerprint
             };
+
+            console.log(`Verse ${verseNumber}:`, {
+                arabic: completeData.arabic.substring(0, 20),
+                transliteration: completeData.transliteration.substring(0, 20),
+                translation: completeData.translation.substring(0, 20)
+            });
 
             generatedFingerprints.push(completeData);
 

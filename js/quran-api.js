@@ -183,8 +183,9 @@ class QuranAPI {
         }
 
         try {
+            // ✅ Use correct IDs: translations=131 (English), transliterations=161 (English)
             const response = await fetch(
-                `${this.baseUrl}/verses/by_chapter/${chapterNumber}?language=en&words=true&audio_recitation=${reciterId}&translations=131&transliterations=131`
+                `${this.baseUrl}/verses/by_chapter/${chapterNumber}?language=en&words=true&audio_recitation=${reciterId}&translations=131&transliterations=161&per_page=500`
             );
             const data = await response.json();
             this.cache.set(cacheKey, data.verses);
