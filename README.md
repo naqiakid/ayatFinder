@@ -1,30 +1,21 @@
-# AyatFinder - Quran Verse Detector
+# 🎵 Quran Shazam - Audio Fingerprint Detector
 
-A mobile-friendly web application that listens to Quran recitation and identifies the Surah and Ayah location.
+A Shazam-like application that identifies Quran verses by analyzing audio fingerprints, not just speech-to-text.
 
-## Features
+## ✨ Key Features
 
-- **Voice Capture** - Records audio directly from browser
-- **Smart Matching** - Uses fuzzy matching algorithm to find verses
-- **Mobile Optimized** - Works perfectly on phones
-- **Beautiful UI** - Modern, clean design with animations
-- **Copy Results** - Easy sharing of detected verses
-- **No Backend Required** - Works entirely in browser
+- 🎵 **Audio Fingerprinting** - Matches actual sound patterns (like Shazam)
+- 🕌 **Al-Fatiha Complete** - All 7 ayahs supported
+- 📖 **Al-Baqarah 1-10** - First 10 ayahs supported
+- 📱 **Mobile Optimized** - Works perfectly on phones
+- 🌐 **Offline Capable** - No internet needed after initial load
+- 🎨 **Beautiful UI** - Modern dark theme with animations
 
-## Quick Start
+## 🚀 Quick Start
 
-### Option 1: Direct Testing (Easiest)
-1. Save the `index.html` file to your computer
-2. Open it directly in Chrome, Edge, or Safari
-3. Allow microphone permission when prompted
-4. Click the microphone button and recite!
-
-### Option 2: Local Server (Recommended)
+### Option 1: Direct Testing
 ```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js
-npx http-server
-
-# Then open http://localhost:8000
+# 1. Save index.html to your computer
+# 2. Open in Chrome browser
+# 3. Allow microphone permission
+# 4. Start testing!
