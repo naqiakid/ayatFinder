@@ -3,155 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Quran Audio Detector - Real Fingerprinting</title>
+    <title>AyatFinder - Quran Audio Detector</title>
+    <meta name="description" content="Identify Quran verses by audio - Like Shazam for Al-Quran">
+    <meta name="theme-color" content="#059669">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-        
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            min-height: 100vh;
-            color: white;
-        }
-        
-        .arabic-text {
-            font-family: 'Amiri', serif;
-            line-height: 2.6;
-            font-size: 2rem;
-        }
-        
-        @media (min-width: 768px) {
-            .arabic-text {
-                font-size: 2.5rem;
-            }
-        }
-        
-        .waveform-container {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        
-        .waveform-canvas {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .pulse-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid #10b981;
-            opacity: 0;
-            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 0.8; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
-        
-        .slide-up {
-            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .mic-button-active {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.5), 0 0 0 8px rgba(239, 68, 68, 0.2);
-        }
-        
-        .mic-button-idle {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.5), 0 0 0 8px rgba(16, 185, 129, 0.2);
-        }
-        
-        .mic-button-processing {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.5), 0 0 0 8px rgba(245, 158, 11, 0.2);
-        }
-        
-        .loading-spinner {
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .feature-bar {
-            transition: width 0.3s ease;
-        }
-        
-        .match-indicator {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .match-indicator::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        .spectrogram-canvas {
-            width: 100%;
-            height: 80px;
-            border-radius: 8px;
-        }
-    </style>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="flex flex-col items-center justify-between min-h-screen">
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900">
 
     <!-- Header -->
     <header class="w-full pt-6 pb-4 px-4">
-        <div class="max-w-md mx-auto glass-card rounded-3xl p-5 shadow-lg">
+        <div class="max-w-md mx-auto glass-card rounded-3xl p-5 shadow-2xl">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center text-white shadow-lg">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                         </svg>
                     </div>
                     <div>
-                        <h1 class="font-bold text-white text-xl">Quran Detector</h1>
-                        <p class="text-xs text-emerald-300 font-medium">Real Audio Analysis</p>
+                        <h1 class="font-bold text-white text-xl">AyatFinder</h1>
+                        <p class="text-xs text-emerald-300 font-medium">Quran Audio Detector</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                     <span class="text-xs bg-emerald-900/50 text-emerald-300 px-3 py-1.5 rounded-full font-semibold">
-                        v3.0
+                        MVP v1.0
                     </span>
                 </div>
             </div>
@@ -164,28 +49,49 @@
         <!-- Status Display -->
         <div id="status-display" class="text-center mb-6 w-full">
             <h2 id="status-title" class="text-2xl font-bold text-white mb-2">Ready to Listen</h2>
-            <p id="status-desc" class="text-emerald-300 text-sm font-medium">Play or recite Al-Fatiha (any ayah)</p>
+            <p id="status-desc" class="text-emerald-300 text-sm font-medium">
+                Surah Yasin (36) or Al-Mulk (67) • 5-10 seconds
+            </p>
         </div>
 
-        <!-- Audio Visualizer / Waveform -->
+        <!-- Recording Timer -->
+        <div id="timer-display" class="hidden mb-6">
+            <div class="glass-card rounded-2xl px-6 py-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    <span class="text-white font-mono text-2xl font-bold" id="recording-timer">00:00</span>
+                    <span class="text-emerald-300 text-sm">/ 00:10</span>
+                </div>
+                <div class="w-full bg-white/10 rounded-full h-2 mt-2">
+                    <div id="timer-bar" class="bg-gradient-to-r from-emerald-400 to-emerald-500 h-2 rounded-full transition-all duration-100" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio Visualizer -->
         <div id="visualizer-container" class="w-full mb-6">
             <div class="waveform-container">
                 <canvas id="waveform-canvas" class="waveform-canvas"></canvas>
             </div>
             <div class="flex justify-between mt-2 text-xs text-emerald-300/70">
-                <span>Real-time Audio Analysis</span>
+                <span>Audio Level</span>
                 <span id="audio-level">0 dB</span>
             </div>
         </div>
 
-        <!-- Spectrogram -->
-        <div id="spectrogram-container" class="hidden w-full mb-6">
+        <!-- Selected Surah -->
+        <div class="w-full mb-6">
             <div class="glass-card rounded-2xl p-4">
-                <p class="text-xs text-emerald-300 font-bold mb-3 uppercase tracking-wider">Frequency Spectrum</p>
-                <canvas id="spectrogram-canvas" class="spectrogram-canvas"></canvas>
-                <div class="flex justify-between mt-2 text-xs text-emerald-300/50">
-                    <span>20 Hz</span>
-                    <span>20 kHz</span>
+                <p class="text-xs text-emerald-300 font-bold mb-3 uppercase tracking-wider">Select Surah</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="selectSurah('yasin')" id="btn-yasin" class="surah-btn active bg-emerald-600/50 border-emerald-500">
+                        <span class="text-white font-bold">Yasin</span>
+                        <span class="text-emerald-300 text-xs">36 • 83 Ayahs</span>
+                    </button>
+                    <button onclick="selectSurah('mulk')" id="btn-mulk" class="surah-btn bg-white/5 border-white/20">
+                        <span class="text-white font-bold">Al-Mulk</span>
+                        <span class="text-emerald-300 text-xs">67 • 30 Ayahs</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -194,42 +100,22 @@
         <div id="features-container" class="hidden w-full mb-6">
             <div class="glass-card rounded-2xl p-4">
                 <p class="text-xs text-emerald-300 font-bold mb-3 uppercase tracking-wider">Extracted Features</p>
-                <div class="space-y-3">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <div class="flex justify-between text-xs text-emerald-300 mb-1">
-                            <span>Duration</span>
-                            <span id="feature-duration">0.0s</span>
-                        </div>
-                        <div class="w-full bg-white/10 rounded-full h-2">
-                            <div id="bar-duration" class="bg-emerald-400 h-2 rounded-full feature-bar" style="width: 0%"></div>
-                        </div>
+                        <p class="text-xs text-emerald-300/70">Duration</p>
+                        <p class="text-white font-mono" id="feature-duration">0.0s</p>
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs text-emerald-300 mb-1">
-                            <span>Energy</span>
-                            <span id="feature-energy">0</span>
-                        </div>
-                        <div class="w-full bg-white/10 rounded-full h-2">
-                            <div id="bar-energy" class="bg-emerald-400 h-2 rounded-full feature-bar" style="width: 0%"></div>
-                        </div>
+                        <p class="text-xs text-emerald-300/70">Energy</p>
+                        <p class="text-white font-mono" id="feature-energy">0.000</p>
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs text-emerald-300 mb-1">
-                            <span>Zero Crossings</span>
-                            <span id="feature-zcr">0</span>
-                        </div>
-                        <div class="w-full bg-white/10 rounded-full h-2">
-                            <div id="bar-zcr" class="bg-emerald-400 h-2 rounded-full feature-bar" style="width: 0%"></div>
-                        </div>
+                        <p class="text-xs text-emerald-300/70">ZCR</p>
+                        <p class="text-white font-mono" id="feature-zcr">0.000</p>
                     </div>
                     <div>
-                        <div class="flex justify-between text-xs text-emerald-300 mb-1">
-                            <span>Spectral Centroid</span>
-                            <span id="feature-centroid">0 Hz</span>
-                        </div>
-                        <div class="w-full bg-white/10 rounded-full h-2">
-                            <div id="bar-centroid" class="bg-emerald-400 h-2 rounded-full feature-bar" style="width: 0%"></div>
-                        </div>
+                        <p class="text-xs text-emerald-300/70">Centroid</p>
+                        <p class="text-white font-mono" id="feature-centroid">0 Hz</p>
                     </div>
                 </div>
             </div>
@@ -241,7 +127,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="text-emerald-100 text-xs uppercase tracking-wider font-bold mb-1">✓ Match Found</p>
-                        <h3 id="result-surah" class="text-white text-2xl font-bold">Surah Al-Fatiha</h3>
+                        <h3 id="result-surah" class="text-white text-2xl font-bold">Surah Yasin</h3>
                     </div>
                     <div class="bg-white/25 backdrop-blur-sm rounded-2xl px-5 py-2.5">
                         <span id="result-ayah" class="text-white font-bold text-lg">Ayah 1</span>
@@ -251,19 +137,19 @@
             <div class="p-6">
                 <div class="bg-white/10 rounded-2xl p-5 mb-4 border border-white/20">
                     <p id="result-arabic" class="arabic-text text-center text-white">
-                        بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                        يسٓ
                     </p>
                 </div>
                 <div class="bg-white/5 rounded-2xl p-4 mb-3">
                     <p class="text-emerald-300 text-xs uppercase tracking-wider font-bold mb-2">Transliteration</p>
                     <p id="result-trans" class="text-white text-center italic font-medium">
-                        Bismillahir Rahmanir Rahim
+                        Ya-Seen
                     </p>
                 </div>
                 <div class="bg-white/5 rounded-2xl p-4 mb-5">
                     <p class="text-emerald-300 text-xs uppercase tracking-wider font-bold mb-2">Translation</p>
                     <p id="result-translation" class="text-emerald-100 text-center font-medium">
-                        In the name of Allah, the Entirely Merciful, the Especially Merciful.
+                        Ya, Seen.
                     </p>
                 </div>
                 
@@ -302,25 +188,21 @@
                 </div>
             </div>
             <div class="p-6">
-                <p id="error-message" class="text-emerald-100 font-medium mb-4 text-center">Could not identify the verse. Please try again.</p>
+                <p id="error-message" class="text-emerald-100 font-medium mb-4 text-center">Could not identify the verse.</p>
                 <div class="bg-amber-900/30 rounded-2xl p-4 mb-5 border border-amber-500/30">
-                    <p class="text-amber-300 text-sm font-bold mb-3">💡 Tips for Better Detection:</p>
+                    <p class="text-amber-300 text-sm font-bold mb-3">💡 Tips:</p>
                     <ul class="text-emerald-100 text-sm space-y-2">
                         <li class="flex items-start gap-2">
-                            <span class="text-emerald-400 font-bold">✓</span>
-                            <span>Play/recite clear audio without background noise</span>
+                            <span class="text-emerald-400">✓</span>
+                            <span>Record 5-10 seconds of clear audio</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="text-emerald-400 font-bold">✓</span>
-                            <span>Record 3-5 seconds of audio (full ayah)</span>
+                            <span class="text-emerald-400">✓</span>
+                            <span>Minimize background noise</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="text-emerald-400 font-bold">✓</span>
-                            <span>Keep device 6-12 inches from sound source</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-emerald-400 font-bold">✓</span>
-                            <span>Try Al-Fatiha first (best supported)</span>
+                            <span class="text-emerald-400">✓</span>
+                            <span>Try a different ayah</span>
                         </li>
                     </ul>
                 </div>
@@ -343,12 +225,7 @@
                     </div>
                 </div>
                 <p class="text-white font-bold text-lg mb-2">Analyzing Audio...</p>
-                <p class="text-emerald-300 text-sm">Extracting features & matching</p>
-                <div class="mt-4 flex justify-center gap-1">
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" style="animation-delay: 0s"></span>
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></span>
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></span>
-                </div>
+                <p class="text-emerald-300 text-sm">Matching with reference fingerprints</p>
             </div>
         </div>
 
@@ -365,824 +242,23 @@
                     <line x1="12" y1="19" x2="12" y2="23"></line>
                     <line x1="8" y1="23" x2="16" y2="23"></line>
                 </svg>
-                <span id="mic-text">Start Listening</span>
+                <span id="mic-text">Start Recording</span>
             </button>
             <div class="text-center mt-4">
                 <p class="text-emerald-300/70 text-xs font-medium">
-                    🎵 Real Audio Feature Extraction
+                    🎵 Recording limit: 5-10 seconds
                 </p>
                 <p class="text-emerald-300/50 text-xs mt-1">
-                    Works with any recitation • Tajweed-aware matching
+                    Works offline • No data collected
                 </p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // ============================================
-        // QURAN DATABASE WITH AUDIO REFERENCE DATA
-        // Al-Fatiha (7 ayahs) - With real audio characteristics
-        // ============================================
-        const quranDatabase = [
-            // Al-Fatiha (Complete - 7 ayahs)
-            {
-                id: 1,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 1,
-                arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
-                transliteration: "Bismillahir Rahmanir Rahim",
-                translation: "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
-                // Reference audio characteristics (from actual recitations)
-                audioProfile: {
-                    durationRange: [3.5, 5.5],  // Typical duration in seconds
-                    energyRange: [0.15, 0.35],   // RMS energy
-                    zcrRange: [0.08, 0.18],      // Zero crossing rate
-                    centroidRange: [800, 1500],  // Spectral centroid in Hz
-                    dominantFreqs: [250, 400, 600, 800],  // Common frequency peaks
-                    syllableCount: 8,            // Approximate syllables
-                    longVowels: 4                // Tajweed long vowels (madd)
-                }
-            },
-            {
-                id: 2,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 2,
-                arabic: "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ",
-                transliteration: "Alhamdu lillahi rabbil alamin",
-                translation: "All praise is due to Allah, Lord of the worlds.",
-                audioProfile: {
-                    durationRange: [3.0, 5.0],
-                    energyRange: [0.18, 0.38],
-                    zcrRange: [0.10, 0.20],
-                    centroidRange: [900, 1600],
-                    dominantFreqs: [300, 450, 650, 850],
-                    syllableCount: 9,
-                    longVowels: 3
-                }
-            },
-            {
-                id: 3,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 3,
-                arabic: "ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
-                transliteration: "Ar-Rahmanir-Rahim",
-                translation: "The Entirely Merciful, the Especially Merciful.",
-                audioProfile: {
-                    durationRange: [2.5, 4.5],
-                    energyRange: [0.16, 0.36],
-                    zcrRange: [0.09, 0.19],
-                    centroidRange: [850, 1550],
-                    dominantFreqs: [280, 420, 620, 820],
-                    syllableCount: 6,
-                    longVowels: 4
-                }
-            },
-            {
-                id: 4,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 4,
-                arabic: "مَٰلِكِ يَوْمِ ٱلدِّينِ",
-                transliteration: "Maliki yawmid-din",
-                translation: "Sovereign of the Day of Recompense.",
-                audioProfile: {
-                    durationRange: [2.5, 4.0],
-                    energyRange: [0.17, 0.37],
-                    zcrRange: [0.10, 0.20],
-                    centroidRange: [900, 1600],
-                    dominantFreqs: [300, 450, 650, 850],
-                    syllableCount: 6,
-                    longVowels: 3
-                }
-            },
-            {
-                id: 5,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 5,
-                arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
-                transliteration: "Iyyaka na'budu wa iyyaka nasta'in",
-                translation: "It is You we worship and You we ask for help.",
-                audioProfile: {
-                    durationRange: [3.5, 5.5],
-                    energyRange: [0.15, 0.35],
-                    zcrRange: [0.08, 0.18],
-                    centroidRange: [800, 1500],
-                    dominantFreqs: [260, 410, 610, 810],
-                    syllableCount: 10,
-                    longVowels: 4
-                }
-            },
-            {
-                id: 6,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 6,
-                arabic: "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ",
-                transliteration: "Ihdinas-siratal-mustaqim",
-                translation: "Guide us to the straight path.",
-                audioProfile: {
-                    durationRange: [3.0, 5.0],
-                    energyRange: [0.16, 0.36],
-                    zcrRange: [0.09, 0.19],
-                    centroidRange: [850, 1550],
-                    dominantFreqs: [270, 420, 620, 820],
-                    syllableCount: 8,
-                    longVowels: 3
-                }
-            },
-            {
-                id: 7,
-                surah: "Al-Fatiha",
-                surahNumber: 1,
-                ayah: 7,
-                arabic: "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ",
-                transliteration: "Siratal-lazina an'amta alayhim",
-                translation: "The path of those upon whom You have bestowed favor.",
-                audioProfile: {
-                    durationRange: [3.5, 5.5],
-                    energyRange: [0.15, 0.35],
-                    zcrRange: [0.08, 0.18],
-                    centroidRange: [800, 1500],
-                    dominantFreqs: [250, 400, 600, 800],
-                    syllableCount: 10,
-                    longVowels: 4
-                }
-            }
-        ];
-
-        // ============================================
-        // STATE VARIABLES
-        // ============================================
-        let isRecording = false;
-        let audioContext = null;
-        let analyser = null;
-        let microphone = null;
-        let mediaRecorder = null;
-        let audioChunks = [];
-        let animationFrame = null;
-        let recordedAudioBuffer = null;
-        let startTime = 0;
-
-        // ============================================
-        // DOM ELEMENTS
-        // ============================================
-        const micButton = document.getElementById('mic-button');
-        const micText = document.getElementById('mic-text');
-        const micIcon = document.getElementById('mic-icon');
-        const pulseRing = document.getElementById('pulse-ring');
-        const statusTitle = document.getElementById('status-title');
-        const statusDesc = document.getElementById('status-desc');
-        const waveformCanvas = document.getElementById('waveform-canvas');
-        const waveformCtx = waveformCanvas.getContext('2d');
-        const spectrogramCanvas = document.getElementById('spectrogram-canvas');
-        const spectrogramCtx = spectrogramCanvas.getContext('2d');
-        const audioLevelDisplay = document.getElementById('audio-level');
-        const featuresContainer = document.getElementById('features-container');
-        const spectrogramContainer = document.getElementById('spectrogram-container');
-        const resultCard = document.getElementById('result-card');
-        const errorCard = document.getElementById('error-card');
-        const processingCard = document.getElementById('processing-card');
-
-        // ============================================
-        // INITIALIZATION
-        // ============================================
-        function initCanvas() {
-            const dpr = window.devicePixelRatio || 1;
-            
-            // Waveform canvas
-            const waveRect = waveformCanvas.getBoundingClientRect();
-            waveformCanvas.width = waveRect.width * dpr;
-            waveformCanvas.height = waveRect.height * dpr;
-            waveformCtx.scale(dpr, dpr);
-            
-            // Spectrogram canvas
-            const specRect = spectrogramCanvas.getBoundingClientRect();
-            spectrogramCanvas.width = specRect.width * dpr;
-            spectrogramCanvas.height = specRect.height * dpr;
-            spectrogramCtx.scale(dpr, dpr);
-        }
-        initCanvas();
-        window.addEventListener('resize', initCanvas);
-
-        // ============================================
-        // REAL AUDIO FEATURE EXTRACTION
-        // ============================================
-        class AudioFeatureExtractor {
-            constructor() {
-                this.sampleRate = 44100;
-                this.fftSize = 2048;
-            }
-
-            // Calculate RMS Energy
-            calculateEnergy(audioBuffer) {
-                const channelData = audioBuffer.getChannelData(0);
-                let sum = 0;
-                for (let i = 0; i < channelData.length; i++) {
-                    sum += channelData[i] * channelData[i];
-                }
-                return Math.sqrt(sum / channelData.length);
-            }
-
-            // Calculate Zero Crossing Rate
-            calculateZCR(audioBuffer) {
-                const channelData = audioBuffer.getChannelData(0);
-                let crossings = 0;
-                for (let i = 1; i < channelData.length; i++) {
-                    if ((channelData[i] >= 0 && channelData[i-1] < 0) ||
-                        (channelData[i] < 0 && channelData[i-1] >= 0)) {
-                        crossings++;
-                    }
-                }
-                return crossings / channelData.length;
-            }
-
-            // Calculate Spectral Centroid
-            calculateSpectralCentroid(audioBuffer) {
-                const offlineContext = new OfflineAudioContext(1, audioBuffer.length, this.sampleRate);
-                const source = offlineContext.createBufferSource();
-                source.buffer = audioBuffer;
-                source.connect(offlineContext.destination);
-                source.start();
-                
-                return offlineContext.startRendering().then(renderedBuffer => {
-                    const channelData = renderedBuffer.getChannelData(0);
-                    let sum = 0;
-                    let total = 0;
-                    
-                    // Simple approximation
-                    for (let i = 0; i < channelData.length; i++) {
-                        const amplitude = Math.abs(channelData[i]);
-                        sum += amplitude * (i / channelData.length) * (this.sampleRate / 2);
-                        total += amplitude;
-                    }
-                    
-                    return total > 0 ? sum / total : 0;
-                });
-            }
-
-            // Extract frequency spectrum
-            extractSpectrum(audioBuffer) {
-                const channelData = audioBuffer.getChannelData(0);
-                const fftSize = 2048;
-                const spectrum = new Float32Array(fftSize / 2);
-                
-                // Simple DFT approximation for dominant frequencies
-                for (let freq = 0; freq < fftSize / 2; freq++) {
-                    let real = 0;
-                    let imag = 0;
-                    const n = channelData.length;
-                    
-                    for (let t = 0; t < n; t++) {
-                        const angle = (2 * Math.PI * freq * t) / n;
-                        real += channelData[t] * Math.cos(angle);
-                        imag -= channelData[t] * Math.sin(angle);
-                    }
-                    
-                    spectrum[freq] = Math.sqrt(real * real + imag * imag) / n;
-                }
-                
-                return spectrum;
-            }
-
-            // Find dominant frequencies
-            findDominantFrequencies(spectrum, count = 4) {
-                const freqs = [];
-                const spectrumCopy = Array.from(spectrum);
-                
-                for (let i = 0; i < count; i++) {
-                    let maxIndex = 0;
-                    let maxValue = 0;
-                    
-                    for (let j = 0; j < spectrumCopy.length; j++) {
-                        if (spectrumCopy[j] > maxValue) {
-                            maxValue = spectrumCopy[j];
-                            maxIndex = j;
-                        }
-                    }
-                    
-                    if (maxValue > 0) {
-                        const freq = Math.round(maxIndex * this.sampleRate / this.fftSize);
-                        if (freq > 50 && freq < 5000) { // Filter reasonable range
-                            freqs.push(freq);
-                        }
-                        spectrumCopy[maxIndex] = 0; // Remove for next iteration
-                    }
-                }
-                
-                return freqs.sort((a, b) => a - b);
-            }
-
-            // Estimate syllable count from energy envelope
-            estimateSyllables(audioBuffer) {
-                const channelData = audioBuffer.getChannelData(0);
-                const windowSize = Math.floor(this.sampleRate * 0.1); // 100ms
-                const envelopes = [];
-                
-                for (let i = 0; i < channelData.length; i += windowSize) {
-                    const window = channelData.slice(i, Math.min(i + windowSize, channelData.length));
-                    const energy = Math.sqrt(window.reduce((sum, val) => sum + val * val, 0) / window.length);
-                    envelopes.push(energy);
-                }
-                
-                // Count peaks in energy envelope (approximates syllables)
-                let peaks = 0;
-                const threshold = Math.max(...envelopes) * 0.3;
-                
-                for (let i = 1; i < envelopes.length - 1; i++) {
-                    if (envelopes[i] > envelopes[i-1] && 
-                        envelopes[i] > envelopes[i+1] && 
-                        envelopes[i] > threshold) {
-                        peaks++;
-                    }
-                }
-                
-                return Math.max(peaks, 1);
-            }
-
-            // Extract all features
-            async extractAllFeatures(audioBuffer) {
-                const duration = audioBuffer.duration;
-                const energy = this.calculateEnergy(audioBuffer);
-                const zcr = this.calculateZCR(audioBuffer);
-                const centroid = await this.calculateSpectralCentroid(audioBuffer);
-                const spectrum = this.extractSpectrum(audioBuffer);
-                const dominantFreqs = this.findDominantFrequencies(spectrum);
-                const syllables = this.estimateSyllables(audioBuffer);
-                
-                // Estimate long vowels from duration and syllable ratio
-                const longVowels = Math.round(syllables * 0.4);
-                
-                return {
-                    duration,
-                    energy,
-                    zcr,
-                    centroid,
-                    dominantFreqs,
-                    syllables,
-                    longVowels
-                };
-            }
-        }
-
-        const featureExtractor = new AudioFeatureExtractor();
-
-        // ============================================
-        // MATCHING ALGORITHM (Tajweed-Aware)
-        // ============================================
-        function matchAudioFeatures(extracted, database) {
-            const matches = [];
-            
-            database.forEach(ayah => {
-                const profile = ayah.audioProfile;
-                let score = 0;
-                const weights = {
-                    duration: 0.25,
-                    energy: 0.15,
-                    zcr: 0.15,
-                    centroid: 0.15,
-                    freqs: 0.15,
-                    syllables: 0.10,
-                    longVowels: 0.05
-                };
-                
-                // Duration match (25%)
-                if (extracted.duration >= profile.durationRange[0] && 
-                    extracted.duration <= profile.durationRange[1]) {
-                    score += 100 * weights.duration;
-                } else {
-                    const midPoint = (profile.durationRange[0] + profile.durationRange[1]) / 2;
-                    const diff = Math.abs(extracted.duration - midPoint);
-                    const maxDiff = (profile.durationRange[1] - profile.durationRange[0]) / 2 + 2;
-                    score += Math.max(0, (1 - diff / maxDiff) * 100) * weights.duration;
-                }
-                
-                // Energy match (15%)
-                const energyMid = (profile.energyRange[0] + profile.energyRange[1]) / 2;
-                const energyDiff = Math.abs(extracted.energy - energyMid);
-                score += Math.max(0, (1 - energyDiff / 0.3) * 100) * weights.energy;
-                
-                // ZCR match (15%)
-                const zcrMid = (profile.zcrRange[0] + profile.zcrRange[1]) / 2;
-                const zcrDiff = Math.abs(extracted.zcr - zcrMid);
-                score += Math.max(0, (1 - zcrDiff / 0.15) * 100) * weights.zcr;
-                
-                // Spectral centroid match (15%)
-                const centroidMid = (profile.centroidRange[0] + profile.centroidRange[1]) / 2;
-                const centroidDiff = Math.abs(extracted.centroid - centroidMid);
-                score += Math.max(0, (1 - centroidDiff / 1000) * 100) * weights.centroid;
-                
-                // Frequency match (15%)
-                let freqMatch = 0;
-                extracted.dominantFreqs.forEach(freq => {
-                    profile.dominantFreqs.forEach(refFreq => {
-                        if (Math.abs(freq - refFreq) < 150) {
-                            freqMatch += 25;
-                        }
-                    });
-                });
-                score += Math.min(100, freqMatch) * weights.freqs;
-                
-                // Syllable count match (10%)
-                const syllableDiff = Math.abs(extracted.syllables - profile.syllableCount);
-                score += Math.max(0, (1 - syllableDiff / 5) * 100) * weights.syllables;
-                
-                // Long vowels match (5%) - Tajweed feature
-                const vowelDiff = Math.abs(extracted.longVowels - profile.longVowels);
-                score += Math.max(0, (1 - vowelDiff / 3) * 100) * weights.longVowels;
-                
-                matches.push({
-                    ayah,
-                    score: Math.round(score),
-                    breakdown: {
-                        duration: extracted.duration.toFixed(2) + 's',
-                        energy: extracted.energy.toFixed(3),
-                        zcr: extracted.zcr.toFixed(3),
-                        centroid: Math.round(extracted.centroid) + ' Hz',
-                        syllables: extracted.syllables,
-                        longVowels: extracted.longVowels
-                    }
-                });
-            });
-            
-            // Sort by score
-            matches.sort((a, b) => b.score - a.score);
-            
-            return matches;
-        }
-
-        // ============================================
-        // WAVEFORM VISUALIZATION
-        // ============================================
-        function drawWaveform(dataArray) {
-            const width = waveformCanvas.width / (window.devicePixelRatio || 1);
-            const height = waveformCanvas.height / (window.devicePixelRatio || 1);
-
-            waveformCtx.clearRect(0, 0, width, height);
-            waveformCtx.fillStyle = 'rgba(16, 185, 129, 0.1)';
-            waveformCtx.fillRect(0, 0, width, height);
-
-            waveformCtx.beginPath();
-            waveformCtx.strokeStyle = '#10b981';
-            waveformCtx.lineWidth = 2;
-
-            const sliceWidth = width / dataArray.length;
-            let x = 0;
-
-            for (let i = 0; i < dataArray.length; i++) {
-                const v = dataArray[i] / 128.0;
-                const y = v * height / 2;
-
-                if (i === 0) {
-                    waveformCtx.moveTo(x, y);
-                } else {
-                    waveformCtx.lineTo(x, y);
-                }
-
-                x += sliceWidth;
-            }
-
-            waveformCtx.lineTo(width, height / 2);
-            waveformCtx.stroke();
-
-            // Update audio level
-            const avg = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
-            const db = Math.round(20 * Math.log10(avg / 128 + 0.001));
-            audioLevelDisplay.textContent = `${db} dB`;
-        }
-
-        function drawSpectrogram(spectrum) {
-            const width = spectrogramCanvas.width / (window.devicePixelRatio || 1);
-            const height = spectrogramCanvas.height / (window.devicePixelRatio || 1);
-            
-            spectrogramCtx.clearRect(0, 0, width, height);
-            
-            const barWidth = width / spectrum.length;
-            
-            for (let i = 0; i < spectrum.length; i++) {
-                const value = spectrum[i];
-                const barHeight = (value / Math.max(...spectrum)) * height;
-                
-                const hue = 120 + (value / Math.max(...spectrum)) * 60; // Green to yellow
-                spectrogramCtx.fillStyle = `hsl(${hue}, 80%, 50%)`;
-                spectrogramCtx.fillRect(i * barWidth, height - barHeight, barWidth, barHeight);
-            }
-        }
-
-        // ============================================
-        // AUDIO RECORDING
-        // ============================================
-        async function startRecording() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    audio: {
-                        echoCancellation: true,
-                        noiseSuppression: true,
-                        sampleRate: 44100
-                    } 
-                });
-
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioContext.createAnalyser();
-                analyser.fftSize = 2048;
-                microphone = audioContext.createMediaStreamSource(stream);
-                microphone.connect(analyser);
-
-                mediaRecorder = new MediaRecorder(stream, {
-                    mimeType: 'audio/webm;codecs=opus',
-                    audioBitsPerSecond: 128000
-                });
-
-                audioChunks = [];
-                startTime = Date.now();
-
-                mediaRecorder.ondataavailable = (event) => {
-                    audioChunks.push(event.data);
-                };
-
-                mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                    await processAudio(audioBlob);
-                };
-
-                mediaRecorder.start();
-                isRecording = true;
-                updateUI('recording');
-                animateWaveform();
-
-            } catch (err) {
-                console.error('Recording error:', err);
-                showError('Could not access microphone. Please check permissions.');
-            }
-        }
-
-        function stopRecording() {
-            if (mediaRecorder && isRecording) {
-                mediaRecorder.stop();
-                isRecording = false;
-                cancelAnimationFrame(animationFrame);
-
-                if (microphone) {
-                    microphone.mediaStream.getTracks().forEach(track => track.stop());
-                }
-                if (audioContext) {
-                    audioContext.close();
-                }
-
-                updateUI('processing');
-            }
-        }
-
-        function animateWaveform() {
-            if (!isRecording) return;
-
-            const dataArray = new Uint8Array(analyser.frequencyBinCount);
-            analyser.getByteFrequencyData(dataArray);
-
-            drawWaveform(dataArray);
-            animationFrame = requestAnimationFrame(animateWaveform);
-        }
-
-        // ============================================
-        // AUDIO PROCESSING & MATCHING
-        // ============================================
-        async function processAudio(audioBlob) {
-            try {
-                const arrayBuffer = await audioBlob.arrayBuffer();
-                
-                // Create new audio context for decoding
-                const decodeContext = new (window.AudioContext || window.webkitAudioContext)();
-                recordedAudioBuffer = await decodeContext.decodeAudioData(arrayBuffer);
-                
-                console.log('Audio duration:', recordedAudioBuffer.duration, 'seconds');
-                console.log('Sample rate:', recordedAudioBuffer.sampleRate);
-                console.log('Channels:', recordedAudioBuffer.numberOfChannels);
-
-                // Extract real audio features
-                const features = await featureExtractor.extractAllFeatures(recordedAudioBuffer);
-                
-                console.log('Extracted features:', features);
-
-                // Display features
-                displayFeatures(features);
-
-                // Match with database
-                const matches = matchAudioFeatures(features, quranDatabase);
-                
-                console.log('Top 3 matches:', matches.slice(0, 3));
-
-                // Check if best match is good enough
-                if (matches[0].score >= 50) {
-                    displayResult(matches[0].ayah, matches[0].score, matches[0].breakdown);
-                } else {
-                    // Show top match anyway with low confidence
-                    if (matches[0].score >= 30) {
-                        displayResult(matches[0].ayah, matches[0].score, matches[0].breakdown, true);
-                    } else {
-                        showError(`Best match: ${matches[0].score}%. Try reciting more clearly or check audio quality.`);
-                    }
-                }
-
-                decodeContext.close();
-
-            } catch (err) {
-                console.error('Processing error:', err);
-                showError('Error processing audio: ' + err.message + '. Please try again.');
-            }
-        }
-
-        // ============================================
-        // DISPLAY FEATURES
-        // ============================================
-        function displayFeatures(features) {
-            featuresContainer.classList.remove('hidden');
-            spectrogramContainer.classList.remove('hidden');
-            
-            document.getElementById('feature-duration').textContent = features.duration.toFixed(2) + 's';
-            document.getElementById('bar-duration').style.width = Math.min(100, (features.duration / 6) * 100) + '%';
-            
-            document.getElementById('feature-energy').textContent = features.energy.toFixed(3);
-            document.getElementById('bar-energy').style.width = Math.min(100, (features.energy / 0.5) * 100) + '%';
-            
-            document.getElementById('feature-zcr').textContent = features.zcr.toFixed(3);
-            document.getElementById('bar-zcr').style.width = Math.min(100, (features.zcr / 0.3) * 100) + '%';
-            
-            document.getElementById('feature-centroid').textContent = Math.round(features.centroid) + ' Hz';
-            document.getElementById('bar-centroid').style.width = Math.min(100, (features.centroid / 3000) * 100) + '%';
-
-            // Draw spectrogram (simplified)
-            const spectrum = featureExtractor.extractSpectrum(recordedAudioBuffer);
-            drawSpectrogram(spectrum.slice(0, 100)); // Show first 100 frequency bins
-        }
-
-        // ============================================
-        // UI STATE MANAGEMENT
-        // ============================================
-        function updateUI(state) {
-            resultCard.classList.add('hidden');
-            errorCard.classList.add('hidden');
-            processingCard.classList.add('hidden');
-
-            switch(state) {
-                case 'idle':
-                    micButton.className = 'mic-button-idle relative w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-bold text-lg transition-all duration-300 active:scale-95';
-                    micText.textContent = 'Start Listening';
-                    micIcon.innerHTML = '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line>';
-                    pulseRing.classList.add('hidden');
-                    statusTitle.textContent = 'Ready to Listen';
-                    statusDesc.textContent = 'Play or recite Al-Fatiha (any ayah)';
-                    micButton.disabled = false;
-                    waveformCtx.clearRect(0, 0, waveformCanvas.width, waveformCanvas.height);
-                    featuresContainer.classList.add('hidden');
-                    spectrogramContainer.classList.add('hidden');
-                    break;
-
-                case 'recording':
-                    micButton.className = 'mic-button-active relative w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-bold text-lg transition-all duration-300 active:scale-95';
-                    micText.textContent = 'Stop Listening';
-                    micIcon.innerHTML = '<rect x="6" y="6" width="12" height="12" fill="currentColor"></rect>';
-                    pulseRing.classList.remove('hidden');
-                    statusTitle.textContent = 'Listening...';
-                    statusDesc.textContent = 'Recite/play for 3-5 seconds';
-                    micButton.disabled = false;
-                    break;
-
-                case 'processing':
-                    statusTitle.textContent = 'Processing...';
-                    statusDesc.textContent = 'Extracting audio features';
-                    processingCard.classList.remove('hidden');
-                    micButton.disabled = true;
-                    micButton.classList.add('opacity-50', 'cursor-not-allowed', 'mic-button-processing');
-                    break;
-            }
-        }
-
-        // ============================================
-        // DISPLAY RESULT
-        // ============================================
-        function displayResult(match, score, breakdown, lowConfidence = false) {
-            processingCard.classList.add('hidden');
-            resultCard.classList.add('hidden');
-            errorCard.classList.add('hidden');
-
-            document.getElementById('result-surah').textContent = `Surah ${match.surah}`;
-            document.getElementById('result-ayah').textContent = `Ayah ${match.ayah}`;
-            document.getElementById('result-arabic').textContent = match.arabic;
-            document.getElementById('result-trans').textContent = match.transliteration;
-            document.getElementById('result-translation').textContent = match.translation;
-            document.getElementById('confidence-score').textContent = `${score}%`;
-            document.getElementById('confidence-bar').style.width = `${score}%`;
-            
-            if (lowConfidence) {
-                document.getElementById('confidence-score').classList.add('text-amber-400');
-            }
-
-            resultCard.classList.remove('hidden');
-            statusTitle.textContent = lowConfidence ? '⚠ Possible Match' : '✓ Match Found!';
-            statusDesc.textContent = `Confidence: ${score}% • ${match.surah}:${match.ayah}`;
-
-            if (navigator.vibrate) {
-                navigator.vibrate(lowConfidence ? [50] : [50, 50, 50]);
-            }
-        }
-
-        // ============================================
-        // SHOW ERROR
-        // ============================================
-        function showError(message) {
-            processingCard.classList.add('hidden');
-            resultCard.classList.add('hidden');
-            errorCard.classList.add('hidden');
-
-            document.getElementById('error-message').textContent = message;
-            errorCard.classList.remove('hidden');
-            statusTitle.textContent = '⚠ No Match';
-            statusDesc.textContent = 'Try again with clearer audio';
-
-            if (navigator.vibrate) {
-                navigator.vibrate([50, 50, 50]);
-            }
-        }
-
-        // ============================================
-        // RESET APP
-        // ============================================
-        function resetApp() {
-            resultCard.classList.add('hidden');
-            errorCard.classList.add('hidden');
-            processingCard.classList.add('hidden');
-            featuresContainer.classList.add('hidden');
-            spectrogramContainer.classList.add('hidden');
-            updateUI('idle');
-            micButton.classList.remove('opacity-50', 'cursor-not-allowed', 'mic-button-processing');
-            document.getElementById('confidence-score').classList.remove('text-amber-400');
-        }
-
-        // ============================================
-        // COPY RESULT
-        // ============================================
-        function copyResult() {
-            const arabic = document.getElementById('result-arabic').textContent;
-            const surah = document.getElementById('result-surah').textContent;
-            const ayah = document.getElementById('result-ayah').textContent;
-            const trans = document.getElementById('result-trans').textContent;
-            const translation = document.getElementById('result-translation').textContent;
-
-            const textToCopy = `${arabic}\n\n${surah} - ${ayah}\n\nTransliteration: ${trans}\n\nTranslation: ${translation}`;
-
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const originalText = micText.textContent;
-                micText.textContent = '✓ Copied!';
-                setTimeout(() => {
-                    micText.textContent = originalText;
-                }, 2000);
-
-                if (navigator.vibrate) {
-                    navigator.vibrate(50);
-                }
-            }).catch(() => {
-                alert('Failed to copy to clipboard');
-            });
-        }
-
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
-        micButton.addEventListener('click', () => {
-            if (isRecording) {
-                stopRecording();
-            } else {
-                startRecording();
-            }
-        });
-
-        // ============================================
-        // BROWSER COMPATIBILITY CHECK
-        // ============================================
-        window.addEventListener('load', () => {
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                statusTitle.textContent = '⚠ Microphone Required';
-                statusDesc.textContent = 'Please allow microphone access to use this feature';
-                micButton.disabled = true;
-                micButton.classList.add('opacity-50', 'cursor-not-allowed', 'bg-slate-400');
-            }
-
-            if (window.location.protocol !== 'https:' && 
-                window.location.hostname !== 'localhost' && 
-                window.location.hostname !== '127.0.0.1') {
-                console.warn('Warning: Microphone access requires HTTPS in production');
-            }
-        });
-
-        // Handle page visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && isRecording) {
-                stopRecording();
-            }
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="js/quran-data.js"></script>
+    <script src="js/audio-processor.js"></script>
+    <script src="js/fingerprint-matcher.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
