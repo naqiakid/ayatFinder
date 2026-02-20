@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Quran Verse Detector - AyatFinder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            line-height: 2.6;
+            font-size: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .arabic-text {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .visualizer-bar {
+            transition: height 0.08s ease;
+            border-radius: 4px;
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #10b981;
+            opacity: 0;
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mic-button-active {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            box-shadow: 0 10px 40px rgba(239, 68, 68, 0.5), 0 0 0 8px rgba(239, 68, 68, 0.2);
+        }
+        
+        .mic-button-idle {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 10px 40px rgba(5, 150, 105, 0.5), 0 0 0 8px rgba(5, 150, 105, 0.2);
+        }
+        
+        .loading-dots span {
+            animation: loading-dot 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes loading-dot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between min-h-screen">
+
+    <!-- Header -->
+    <header class="w-full pt-6 pb-4 px-4">
+        <div class="max-w-md mx-auto glass-card rounded-3xl p-5 shadow-lg">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center text-white shadow-lg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-slate-800 text-xl">AyatFinder</h1>
+                        <p class="text-xs text-slate-500 font-medium">Quran Verse Detector</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <span class="text-xs bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full font-semibold">
+                        Ready
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 w-full max-w-md flex flex-col items-center justify-center px-4 py-6">
+        
+        <!-- Status Display -->
+        <div id="status-display" class="text-center mb-6 w-full">
+            <h2 id="status-title" class="text-2xl font-bold text-slate-800 mb-2">Ready to Listen</h2>
+            <p id="status-desc" class="text-slate-500 text-sm font-medium">Tap the microphone and recite in English or Arabic</p>
+        </div>
+
+        <!-- Audio Visualizer -->
+        <div id="visualizer-container" class="w-full h-24 bg-white/70 backdrop-blur-sm rounded-2xl mb-6 flex items-center justify-center gap-1.5 px-4 shadow-inner border border-white/60">
+            <!-- Bars generated by JavaScript -->
+        </div>
+
+        <!-- Result Card -->
+        <div id="result-card" class="hidden w-full bg-white rounded-3xl shadow-2xl border border-emerald-100 overflow-hidden slide-up">
+            <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 p-5">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-emerald-100 text-xs uppercase tracking-wider font-bold mb-1">✓ Match Found</p>
+                        <h3 id="result-surah" class="text-white text-2xl font-bold">Surah Al-Fatiha</h3>
+                    </div>
+                    <div class="bg-white/25 backdrop-blur-sm rounded-2xl px-5 py-2.5">
+                        <span id="result-ayah" class="text-white font-bold text-lg">Ayah 1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="bg-emerald-50 rounded-2xl p-5 mb-4 border border-emerald-100">
+                    <p id="result-arabic" class="arabic-text text-center text-slate-800">
+                        بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-4 mb-3">
+                    <p class="text-slate-400 text-xs uppercase tracking-wider font-bold mb-2">Transliteration</p>
+                    <p id="result-trans" class="text-slate-700 text-center italic font-medium">
+                        Bismillahir Rahmanir Rahim
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-4 mb-5">
+                    <p class="text-slate-400 text-xs uppercase tracking-wider font-bold mb-2">Translation</p>
+                    <p id="result-translation" class="text-slate-700 text-center font-medium">
+                        In the name of Allah, the Entirely Merciful, the Especially Merciful.
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="resetApp()" class="flex-1 bg-emerald-600 text-white py-3.5 rounded-2xl font-bold hover:bg-emerald-700 transition-all active:scale-95 shadow-lg shadow-emerald-200">
+                        Detect Another
+                    </button>
+                    <button onclick="copyResult()" class="flex-1 bg-slate-100 text-slate-700 py-3.5 rounded-2xl font-bold hover:bg-slate-200 transition-all active:scale-95">
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Card -->
+        <div id="error-card" class="hidden w-full bg-white rounded-3xl shadow-xl border border-red-100 overflow-hidden slide-up">
+            <div class="bg-gradient-to-r from-red-500 to-red-600 p-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-white text-lg font-bold">Not Found</h3>
+                </div>
+            </div>
+            <div class="p-6">
+                <p id="error-message" class="text-slate-600 font-medium mb-4 text-center">Could not identify the verse. Please try again.</p>
+                <div class="bg-amber-50 rounded-2xl p-4 mb-5 border border-amber-100">
+                    <p class="text-amber-800 text-sm font-bold mb-3">💡 Tips for Better Results:</p>
+                    <ul class="text-slate-600 text-sm space-y-2">
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 font-bold">✓</span>
+                            <span>Speak clearly in a quiet environment</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 font-bold">✓</span>
+                            <span>Try English transliteration (e.g., "Bismillah")</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 font-bold">✓</span>
+                            <span>Recite short phrases (3-5 words)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-emerald-500 font-bold">✓</span>
+                            <span>Ensure microphone permission is granted</span>
+                        </li>
+                    </ul>
+                </div>
+                <button onclick="resetApp()" class="w-full bg-red-600 text-white py-3.5 rounded-2xl font-bold hover:bg-red-700 transition-all active:scale-95 shadow-lg shadow-red-200">
+                    Try Again
+                </button>
+            </div>
+        </div>
+
+        <!-- Processing State -->
+        <div id="processing-card" class="hidden w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden slide-up">
+            <div class="p-8 text-center">
+                <div class="loading-dots flex justify-center gap-2 mb-4">
+                    <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                    <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                    <span class="w-3 h-3 bg-emerald-500 rounded-full"></span>
+                </div>
+                <p class="text-slate-600 font-medium">Analyzing your recitation...</p>
+                <p class="text-slate-400 text-sm mt-2">Matching with Quran database</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Controls -->
+    <footer class="w-full max-w-md p-4 pb-8">
+        <div class="glass-card rounded-3xl p-6 shadow-xl">
+            <button id="mic-button" class="mic-button-idle relative w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-bold text-lg transition-all duration-300 active:scale-95">
+                <div id="pulse-ring" class="pulse-ring hidden"></div>
+                <svg id="mic-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+                <span id="mic-text">Start Recording</span>
+            </button>
+            <div class="text-center mt-4">
+                <p class="text-slate-400 text-xs font-medium">
+                    🎤 Works on Chrome, Edge, Safari (iOS 14.3+)
+                </p>
+                <p class="text-slate-300 text-xs mt-1">
+                    Internet required for speech recognition
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // QURAN DATABASE (Expandable - Sample Verses)
+        // ============================================
+        const quranDatabase = [
+            // Al-Fatiha (Complete)
+            { id: 1, surah: "Al-Fatiha", surahNumber: 1, ayah: 1, arabic: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", transliteration: "bismillahir rahmanir rahim", translation: "In the name of Allah, the Entirely Merciful, the Especially Merciful." },
+            { id: 2, surah: "Al-Fatiha", surahNumber: 1, ayah: 2, arabic: "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ", transliteration: "alhamdu lillahi rabbil alamin", translation: "All praise is due to Allah, Lord of the worlds." },
+            { id: 3, surah: "Al-Fatiha", surahNumber: 1, ayah: 3, arabic: "ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", transliteration: "ar rahmanir rahim", translation: "The Entirely Merciful, the Especially Merciful." },
+            { id: 4, surah: "Al-Fatiha", surahNumber: 1, ayah: 4, arabic: "مَٰلِكِ يَوْمِ ٱلدِّينِ", transliteration: "maliki yawmid din", translation: "Sovereign of the Day of Recompense." },
+            { id: 5, surah: "Al-Fatiha", surahNumber: 1, ayah: 5, arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", transliteration: "iyyaka nabudu wa iyyaka nastain", translation: "It is You we worship and You we ask for help." },
+            { id: 6, surah: "Al-Fatiha", surahNumber: 1, ayah: 6, arabic: "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ", transliteration: "ihdinas siratal mustaqim", translation: "Guide us to the straight path." },
+            { id: 7, surah: "Al-Fatiha", surahNumber: 1, ayah: 7, arabic: "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ", transliteration: "siratal lazina anamta alayhim", translation: "The path of those upon whom You have bestowed favor." },
+            
+            // Al-Ikhlas (Complete)
+            { id: 8, surah: "Al-Ikhlas", surahNumber: 112, ayah: 1, arabic: "قُلْ هُوَ ٱللَّهُ أَحَدٌ", transliteration: "qul huwallahu ahad", translation: "Say, He is Allah, [who is] One." },
+            { id: 9, surah: "Al-Ikhlas", surahNumber: 112, ayah: 2, arabic: "ٱللَّهُ ٱلصَّمَدُ", transliteration: "allahus samad", translation: "Allah, the Eternal Refuge." },
+            { id: 10, surah: "Al-Ikhlas", surahNumber: 112, ayah: 3, arabic: "لَمْ يَلِدْ وَلَمْ يُولَدْ", transliteration: "lam yalid wa lam yulad", translation: "He neither begets nor is born." },
+            { id: 11, surah: "Al-Ikhlas", surahNumber: 112, ayah: 4, arabic: "وَلَمْ يَكُن لَّهُۥ كُفُوًا أَحَدٌۢ", transliteration: "wa lam yakun lahu kufuwan ahad", translation: "Nor is there to Him any equivalent." },
+            
+            // Al-Falaq (Complete)
+            { id: 12, surah: "Al-Falaq", surahNumber: 113, ayah: 1, arabic: "قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ", transliteration: "qul auzu birabbil falaq", translation: "Say, I seek refuge in the Lord of daybreak." },
+            { id: 13, surah: "Al-Falaq", surahNumber: 113, ayah: 2, arabic: "مِن شَرِّ مَا خَلَقَ", transliteration: "min sharri ma khalaq", translation: "From the evil of that which He created." },
+            { id: 14, surah: "Al-Falaq", surahNumber: 113, ayah: 3, arabic: "وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ", transliteration: "wa min sharri ghasiqin iza waqab", translation: "And from the evil of darkness when it settles." },
+            { id: 15, surah: "Al-Falaq", surahNumber: 113, ayah: 4, arabic: "وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِى ٱلْعُقَدِ", transliteration: "wa min sharri an naffathati fil uqad", translation: "And from the evil of the blowers in knots." },
+            { id: 16, surah: "Al-Falaq", surahNumber: 113, ayah: 5, arabic: "وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ", transliteration: "wa min sharri hasidin iza hasad", translation: "And from the evil of an envier when he envies." },
+            
+            // An-Nas (Complete)
+            { id: 17, surah: "An-Nas", surahNumber: 114, ayah: 1, arabic: "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ", transliteration: "qul auzu birabbin nas", translation: "Say, I seek refuge in the Lord of mankind." },
+            { id: 18, surah: "An-Nas", surahNumber: 114, ayah: 2, arabic: "مَلِكِ ٱلنَّاسِ", transliteration: "malikin nas", translation: "The Sovereign of mankind." },
+            { id: 19, surah: "An-Nas", surahNumber: 114, ayah: 3, arabic: "إِلَٰهِ ٱلنَّاسِ", transliteration: "ilahun nas", translation: "The God of mankind." },
+            { id: 20, surah: "An-Nas", surahNumber: 114, ayah: 4, arabic: "مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ", transliteration: "min sharril waswasil khannas", translation: "From the evil of the retreating whisperer." },
+            { id: 21, surah: "An-Nas", surahNumber: 114, ayah: 5, arabic: "ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ", transliteration: "allazi yuwaswisu fi sudurin nas", translation: "Who whispers in the breasts of mankind." },
+            { id: 22, surah: "An-Nas", surahNumber: 114, ayah: 6, arabic: "مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ", transliteration: "minal jinnati wan nas", translation: "From among the jinn and mankind." },
+            
+            // Al-Kawthar (Complete)
+            { id: 23, surah: "Al-Kawthar", surahNumber: 108, ayah: 1, arabic: "إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ", transliteration: "inna aataynakal kawthar", translation: "Indeed, We have granted you al-Kawthar." },
+            { id: 24, surah: "Al-Kawthar", surahNumber: 108, ayah: 2, arabic: "فَصَلِّ لِرَبِّكَ وَٱنْحَرْ", transliteration: "fasalli lirabbika wanhar", translation: "So pray to your Lord and sacrifice." },
+            { id: 25, surah: "Al-Kawthar", surahNumber: 108, ayah: 3, arabic: "إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ", transliteration: "inna shaniaka huwal abtar", translation: "Indeed, your enemy is the one cut off." },
+            
+            // Al-Asr (Complete)
+            { id: 26, surah: "Al-Asr", surahNumber: 103, ayah: 1, arabic: "وَٱلْعَصْرِ", transliteration: "wal asr", translation: "By time." },
+            { id: 27, surah: "Al-Asr", surahNumber: 103, ayah: 2, arabic: "إِنَّ ٱلْإِنسَٰنَ لَفِى خُسْرٍ", transliteration: "innal insana lafi khusr", translation: "Indeed, mankind is in loss." },
+            { id: 28, surah: "Al-Asr", surahNumber: 103, ayah: 3, arabic: "إِلَّا ٱلَّذِينَ ءَامَنُوا۟ وَعَمِلُوا۟ ٱلصَّٰلِحَٰتِ", transliteration: "illal lazina amanu wa amilus salihat", translation: "Except those who believe and do righteous deeds." },
+            
+            // Ayat Al-Kursi (Al-Baqarah 255)
+            { id: 29, surah: "Al-Baqarah", surahNumber: 2, ayah: 255, arabic: "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ", transliteration: "allahu la ilaha illa huwal hayyul qayyum", translation: "Allah - there is no deity except Him, the Ever-Living, the Sustainer of existence." },
+            
+            // Additional common verses
+            { id: 30, surah: "Al-Baqarah", surahNumber: 2, ayah: 286, arabic: "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا", transliteration: "la yukallifullahu nafsan illa wus'aha", translation: "Allah does not charge a soul except with that within its capacity." },
+            { id: 31, surah: "Ali 'Imran", surahNumber: 3, ayah: 18, arabic: "شَهِدَ ٱللَّهُ أَنَّهُۥ لَآ إِلَٰهَ إِلَّا هُوَ", transliteration: "shahidallahu annahu la ilaha illa huwa", translation: "Allah witnesses that there is no deity except Him." },
+            { id: 32, surah: "Al-Hashr", surahNumber: 59, ayah: 22, arabic: "هُوَ ٱللَّهُ ٱلَّذِى لَآ إِلَٰهَ إِلَّا هُوَ", transliteration: "huwallahul lazi la ilaha illa huwa", translation: "He is Allah, other than whom there is no deity." }
+        ];
+
+        // ============================================
+        // STATE VARIABLES
+        // ============================================
+        let isRecording = false;
+        let recognition = null;
+        let visualizerInterval = null;
+        let currentTranscript = '';
+        let audioContext = null;
+        let analyser = null;
+        let microphone = null;
+
+        // ============================================
+        // DOM ELEMENTS
+        // ============================================
+        const micButton = document.getElementById('mic-button');
+        const micText = document.getElementById('mic-text');
+        const micIcon = document.getElementById('mic-icon');
+        const pulseRing = document.getElementById('pulse-ring');
+        const statusTitle = document.getElementById('status-title');
+        const statusDesc = document.getElementById('status-desc');
+        const visualizerContainer = document.getElementById('visualizer-container');
+        const resultCard = document.getElementById('result-card');
+        const errorCard = document.getElementById('error-card');
+        const processingCard = document.getElementById('processing-card');
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        function initVisualizer() {
+            visualizerContainer.innerHTML = '';
+            const barCount = window.innerWidth < 640 ? 15 : 20;
+            for (let i = 0; i < barCount; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'visualizer-bar w-2 bg-emerald-300';
+                bar.style.height = '8px';
+                visualizerContainer.appendChild(bar);
+            }
+        }
+        initVisualizer();
+
+        // Handle window resize
+        window.addEventListener('resize', initVisualizer);
+
+        // ============================================
+        // AUDIO VISUALIZER
+        // ============================================
+        function animateVisualizer(active) {
+            const bars = visualizerContainer.querySelectorAll('.visualizer-bar');
+            
+            if (active) {
+                visualizerInterval = setInterval(() => {
+                    bars.forEach((bar, index) => {
+                        const baseHeight = 8;
+                        const variation = Math.random() * 60 + 10;
+                        const height = baseHeight + variation;
+                        bar.style.height = `${height}px`;
+                        
+                        // Color based on height
+                        if (height > 50) {
+                            bar.className = 'visualizer-bar w-2 bg-red-400';
+                        } else if (height > 35) {
+                            bar.className = 'visualizer-bar w-2 bg-emerald-500';
+                        } else {
+                            bar.className = 'visualizer-bar w-2 bg-emerald-400';
+                        }
+                    });
+                }, 80);
+            } else {
+                clearInterval(visualizerInterval);
+                bars.forEach(bar => {
+                    bar.style.height = '8px';
+                    bar.className = 'visualizer-bar w-2 bg-emerald-300';
+                });
+            }
+        }
+
+        // ============================================
+        // SPEECH RECOGNITION SETUP
+        // ============================================
+        function initSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                showError('Speech Recognition is not supported in your browser. Please use Chrome, Edge, or Safari.');
+                return null;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+            recognition.maxAlternatives = 3;
+
+            recognition.onstart = () => {
+                isRecording = true;
+                currentTranscript = '';
+                updateUI('recording');
+                animateVisualizer(true);
+                startAudioAnalysis();
+            };
+
+            recognition.onresult = (event) => {
+                currentTranscript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    currentTranscript += event.results[i][0].transcript;
+                }
+                statusDesc.textContent = `🎤 "${currentTranscript}"`;
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                animateVisualizer(false);
+                stopAudioAnalysis();
+                
+                if (currentTranscript.trim()) {
+                    processTranscript(currentTranscript);
+                } else {
+                    updateUI('idle');
+                }
+            };
+
+            recognition.onerror = (event) => {
+                isRecording = false;
+                animateVisualizer(false);
+                stopAudioAnalysis();
+                
+                let errorMessage = 'Speech recognition error';
+                switch(event.error) {
+                    case 'no-speech':
+                        errorMessage = 'No speech detected. Please try speaking louder.';
+                        break;
+                    case 'audio-capture':
+                        errorMessage = 'No microphone found. Please check your device.';
+                        break;
+                    case 'not-allowed':
+                        errorMessage = 'Microphone permission denied. Please allow access.';
+                        break;
+                    case 'network':
+                        errorMessage = 'Network error. Please check your internet connection.';
+                        break;
+                    default:
+                        errorMessage = `Error: ${event.error}. Please try again.`;
+                }
+                showError(errorMessage);
+            };
+
+            return recognition;
+        }
+
+        // ============================================
+        // AUDIO ANALYSIS (For Visualizer)
+        // ============================================
+        async function startAudioAnalysis() {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                microphone = audioContext.createMediaStreamSource(stream);
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 64;
+                microphone.connect(analyser);
+            } catch (err) {
+                console.log('Audio analysis not available:', err);
+            }
+        }
+
+        function stopAudioAnalysis() {
+            if (audioContext) {
+                audioContext.close();
+                audioContext = null;
+            }
+        }
+
+        // ============================================
+        // FUZZY MATCHING ALGORITHM
+        // ============================================
+        function fuzzyMatch(input, database) {
+            const inputLower = input.toLowerCase().trim();
+            
+            // Clean input - remove common filler words
+            const cleanInput = inputLower
+                .replace(/\b(the|a|an|and|oh|um|uh|like|you know)\b/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+            
+            const inputWords = cleanInput.split(/\s+/).filter(w => w.length > 1);
+            
+            let bestMatch = null;
+            let bestScore = 0;
+            let matchDetails = '';
+
+            database.forEach(item => {
+                const dbLower = item.transliteration.toLowerCase();
+                const dbWords = dbLower.split(/\s+/);
+                
+                // Method 1: Direct substring match (highest priority)
+                if (dbLower.includes(cleanInput) || cleanInput.includes(dbLower)) {
+                    bestMatch = item;
+                    bestScore = 100;
+                    matchDetails = 'Direct match';
+                    return;
+                }
+                
+                // Method 2: Word overlap scoring
+                let matchCount = 0;
+                let totalWords = Math.max(inputWords.length, dbWords.length);
+                
+                inputWords.forEach(inputWord => {
+                    dbWords.forEach(dbWord => {
+                        // Check for partial word matches
+                        if (inputWord.includes(dbWord) || dbWord.includes(inputWord)) {
+                            matchCount++;
+                        }
+                        // Check for similar sounding words (simple phonetic)
+                        else if (levenshteinDistance(inputWord, dbWord) <= 2) {
+                            matchCount += 0.5;
+                        }
+                    });
+                });
+
+                const score = (matchCount / totalWords) * 100;
+
+                if (score > bestScore && score >= 30) {
+                    bestScore = score;
+                    bestMatch = item;
+                    matchDetails = `${matchCount}/${totalWords} words matched`;
+                }
+            });
+
+            return { 
+                match: bestMatch, 
+                score: bestScore,
+                details: matchDetails
+            };
+        }
+
+        // Levenshtein Distance for fuzzy string matching
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
+            
+            for (let i = 0; i <= str2.length; i++) {
+                matrix[i] = [i];
+            }
+            
+            for (let j = 0; j <= str1.length; j++) {
+                matrix[0][j] = j;
+            }
+            
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            
+            return matrix[str2.length][str1.length];
+        }
+
+        // ============================================
+        // PROCESS TRANSCRIPT
+        // ============================================
+        function processTranscript(transcript) {
+            updateUI('processing');
+            
+            // Simulate processing delay for better UX
+            setTimeout(() => {
+                const result = fuzzyMatch(transcript, quranDatabase);
+                
+                console.log('Transcript:', transcript);
+                console.log('Match:', result);
+                
+                if (result.match && result.score >= 30) {
+                    displayResult(result.match, transcript, result.score);
+                } else {
+                    showError(`Could not match "${transcript}". Try speaking more clearly or use English transliteration.`);
+                }
+            }, 1500);
+        }
+
+        // ============================================
+        // UI STATE MANAGEMENT
+        // ============================================
+        function updateUI(state) {
+            // Hide all cards first
+            resultCard.classList.add('hidden');
+            errorCard.classList.add('hidden');
+            processingCard.classList.add('hidden');
+            
+            switch(state) {
+                case 'idle':
+                    micButton.className = 'mic-button-idle relative w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-bold text-lg transition-all duration-300 active:scale-95';
+                    micText.textContent = 'Start Recording';
+                    micIcon.innerHTML = '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line>';
+                    pulseRing.classList.add('hidden');
+                    statusTitle.textContent = 'Ready to Listen';
+                    statusDesc.textContent = 'Tap the microphone and recite in English or Arabic';
+                    micButton.disabled = false;
+                    break;
+                    
+                case 'recording':
+                    micButton.className = 'mic-button-active relative w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-bold text-lg transition-all duration-300 active:scale-95';
+                    micText.textContent = 'Stop Recording';
+                    micIcon.innerHTML = '<rect x="6" y="6" width="12" height="12" fill="currentColor"></rect>';
+                    pulseRing.classList.remove('hidden');
+                    statusTitle.textContent = 'Listening...';
+                    statusDesc.textContent = 'Recite clearly...';
+                    micButton.disabled = false;
+                    break;
+                    
+                case 'processing':
+                    statusTitle.textContent = 'Processing...';
+                    statusDesc.textContent = 'Matching audio to database';
+                    processingCard.classList.remove('hidden');
+                    micButton.disabled = true;
+                    micButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    break;
+            }
+        }
+
+        // ============================================
+        // DISPLAY RESULT
+        // ============================================
+        function displayResult(match, transcript, score) {
+            processingCard.classList.add('hidden');
+            resultCard.classList.add('hidden');
+            errorCard.classList.add('hidden');
+            
+            document.getElementById('result-surah').textContent = `Surah ${match.surah}`;
+            document.getElementById('result-ayah').textContent = `Ayah ${match.ayah}`;
+            document.getElementById('result-arabic').textContent = match.arabic;
+            document.getElementById('result-trans').textContent = match.transliteration;
+            document.getElementById('result-translation').textContent = match.translation;
+            
+            resultCard.classList.remove('hidden');
+            statusTitle.textContent = '✓ Match Found!';
+            statusDesc.textContent = `Confidence: ${Math.round(score)}% • "${transcript}"`;
+            
+            // Haptic feedback (if available)
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // ============================================
+        // SHOW ERROR
+        // ============================================
+        function showError(message) {
+            processingCard.classList.add('hidden');
+            resultCard.classList.add('hidden');
+            errorCard.classList.add('hidden');
+            
+            document.getElementById('error-message').textContent = message;
+            errorCard.classList.remove('hidden');
+            statusTitle.textContent = '⚠ No Match';
+            statusDesc.textContent = 'Try again with clearer speech';
+            
+            // Haptic feedback (if available)
+            if (navigator.vibrate) {
+                navigator.vibrate([50, 50, 50]);
+            }
+        }
+
+        // ============================================
+        // RESET APP
+        // ============================================
+        function resetApp() {
+            resultCard.classList.add('hidden');
+            errorCard.classList.add('hidden');
+            processingCard.classList.add('hidden');
+            currentTranscript = '';
+            updateUI('idle');
+            initVisualizer();
+            micButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // ============================================
+        // COPY RESULT
+        // ============================================
+        function copyResult() {
+            const arabic = document.getElementById('result-arabic').textContent;
+            const surah = document.getElementById('result-surah').textContent;
+            const ayah = document.getElementById('result-ayah').textContent;
+            const trans = document.getElementById('result-trans').textContent;
+            const translation = document.getElementById('result-translation').textContent;
+            
+            const textToCopy = `${arabic}\n\n${surah} - ${ayah}\n\nTransliteration: ${trans}\n\nTranslation: ${translation}`;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Show temporary success message
+                const originalText = micText.textContent;
+                micText.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    micText.textContent = originalText;
+                }, 2000);
+                
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+            }).catch(() => {
+                alert('Failed to copy to clipboard');
+            });
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        micButton.addEventListener('click', () => {
+            if (!recognition) {
+                recognition = initSpeechRecognition();
+                if (!recognition) return;
+            }
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                currentTranscript = '';
+                try {
+                    recognition.start();
+                } catch (err) {
+                    showError('Could not start recording. Please refresh the page and try again.');
+                }
+            }
+        });
+
+        // ============================================
+        // BROWSER COMPATIBILITY CHECK
+        // ============================================
+        window.addEventListener('load', () => {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                statusTitle.textContent = '⚠ Browser Not Supported';
+                statusDesc.textContent = 'Please use Chrome, Edge, or Safari (iOS 14.3+) for speech recognition';
+                micButton.disabled = true;
+                micButton.classList.add('opacity-50', 'cursor-not-allowed', 'bg-slate-400');
+                showError('Speech Recognition API not available in this browser. Please use Chrome, Edge, or Safari.');
+            } else if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                statusTitle.textContent = '⚠ Microphone Access Required';
+                statusDesc.textContent = 'Please allow microphone access to use this feature';
+            }
+            
+            // Check if HTTPS (required for microphone access)
+            if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                console.warn('Warning: Microphone access requires HTTPS in production');
+            }
+        });
+
+        // Handle page visibility change (stop recording if user switches tabs)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && isRecording && recognition) {
+                recognition.stop();
+            }
+        });
+    </script>
+</body>
+</html>
