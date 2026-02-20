@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyatFinder - Fingerprint Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 p-4">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8">
+            <div class="glass-card rounded-3xl p-6">
+                <h1 class="text-2xl font-bold text-white mb-2">🎵 Fingerprint Builder</h1>
+                <p class="text-emerald-300">Generate audio fingerprints from Quran.com API</p>
+            </div>
+        </header>
+
+        <!-- Configuration -->
+        <div class="glass-card rounded-3xl p-6 mb-6">
+            <h2 class="text-lg font-bold text-white mb-4">Configuration</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-emerald-300 text-sm font-medium mb-2 block">Select Surah</label>
+                    <select id="surah-select" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                        <option value="36">Surah Yasin (36) - 83 Ayahs</option>
+                        <option value="67">Surah Al-Mulk (67) - 30 Ayahs</option>
+                        <option value="1">Surah Al-Fatiha (1) - 7 Ayahs</option>
+                        <option value="112">Surah Al-Ikhlas (112) - 4 Ayahs</option>
+                        <option value="113">Surah Al-Falaq (113) - 5 Ayahs</option>
+                        <option value="114">Surah An-Nas (114) - 6 Ayahs</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="text-emerald-300 text-sm font-medium mb-2 block">Select Reciter</label>
+                    <select id="reciter-select" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                        <option value="7">Mishary Rashid Alafasy</option>
+                        <option value="1">AbdulBaset AbdulSamad</option>
+                        <option value="2">Abdur-Rahman as-Sudais</option>
+                        <option value="5">Saad Al-Ghamdi</option>
+                        <option value="11">Mahmoud Khalil Al-Hussary</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <label class="text-emerald-300 text-sm font-medium mb-2 block">Verse Range</label>
+                <div class="flex gap-4">
+                    <input type="number" id="verse-from" placeholder="From" value="1" 
+                        class="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                    <input type="number" id="verse-to" placeholder="To" value="10" 
+                        class="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div id="progress-container" class="hidden glass-card rounded-3xl p-6 mb-6">
+            <h2 class="text-lg font-bold text-white mb-4">Progress</h2>
+            
+            <div class="mb-4">
+                <div class="flex justify-between text-sm text-emerald-300 mb-2">
+                    <span id="progress-text">Processing verse 1 of 10</span>
+                    <span id="progress-percentage">0%</span>
+                </div>
+                <div class="w-full bg-white/10 rounded-full h-4">
+                    <div id="progress-bar" class="bg-gradient-to-r from-emerald-400 to-emerald-500 h-4 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div id="current-verse" class="bg-white/5 rounded-xl p-4">
+                <p class="text-white font-medium mb-2">Current Verse:</p>
+                <p id="current-verse-text" class="text-emerald-300 text-sm">-</p>
+                <div class="flex gap-4 mt-3 text-xs text-emerald-300/70">
+                    <span>Duration: <span id="current-duration" class="text-white">-</span></span>
+                    <span>Energy: <span id="current-energy" class="text-white">-</span></span>
+                    <span>Centroid: <span id="current-centroid" class="text-white">-</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results-container" class="hidden glass-card rounded-3xl p-6 mb-6">
+            <h2 class="text-lg font-bold text-white mb-4">Generated Fingerprints</h2>
+            
+            <div class="flex gap-3 mb-4">
+                <button onclick="downloadFingerprints()" class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition">
+                    📥 Download JSON
+                </button>
+                <button onclick="copyToClipboard()" class="flex-1 bg-white/10 text-white py-3 rounded-xl font-bold hover:bg-white/20 transition">
+                    📋 Copy to Clipboard
+                </button>
+            </div>
+
+            <div id="fingerprints-list" class="space-y-3 max-h-96 overflow-y-auto">
+                <!-- Fingerprints will be added here -->
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="glass-card rounded-3xl p-6">
+            <button id="start-btn" onclick="startGeneration()" 
+                class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all active:scale-95 shadow-lg">
+                🚀 Start Fingerprint Generation
+            </button>
+            
+            <button id="stop-btn" onclick="stopGeneration()" disabled
+                class="hidden w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-red-600 hover:to-red-700 transition-all active:scale-95 shadow-lg">
+                ⏹️ Stop Generation
+            </button>
+
+            <p class="text-center text-emerald-300/70 text-sm mt-4">
+                ⚠️ This will fetch audio from Quran.com API. Please respect rate limits.
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/quran-api.js"></script>
+    <script src="js/audio-processor.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
