@@ -1,5 +1,4 @@
 // Admin Tool - Fingerprint Builder Logic
-
 let isGenerating = false;
 let generatedFingerprints = [];
 let currentSurah = 36;
@@ -14,6 +13,7 @@ const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
 const progressPercentage = document.getElementById('progress-percentage');
 
+// Surah verse counts
 const SURAH_VERSE_COUNTS = {
     1: 7,
     36: 83,
@@ -23,6 +23,29 @@ const SURAH_VERSE_COUNTS = {
     114: 6
 };
 
+// ⭐ HELPER: Extract and combine text from words array ⭐
+function extractVerseText(verseData) {
+    // Filter only actual words (exclude verse end markers)
+    const words = verseData.words.filter(w => w.char_type_name === 'word');
+    
+    // Combine Arabic text
+    const arabic = words.map(w => w.text).join(' ');
+    
+    // Combine transliteration
+    const transliteration = words
+        .map(w => w.transliteration?.text || '')
+        .filter(t => t)
+        .join(' ');
+    
+    // Combine translation
+    const translation = words
+        .map(w => w.translation?.text || '')
+        .filter(t => t)
+        .join(' ');
+    
+    return { arabic, transliteration, translation };
+}
+
 async function startGeneration() {
     const surahNumber = parseInt(document.getElementById('surah-select').value);
     const reciterId = parseInt(document.getElementById('reciter-select').value);
@@ -30,10 +53,11 @@ async function startGeneration() {
     currentSurah = surahNumber;
     currentReciter = reciterId;
     surahTotalVerses = SURAH_VERSE_COUNTS[surahNumber] || 83;
-    
+
     isGenerating = true;
     generatedFingerprints = [];
 
+    // Update UI
     startBtn.classList.add('hidden');
     stopBtn.classList.remove('hidden');
     progressContainer.classList.remove('hidden');
@@ -41,9 +65,11 @@ async function startGeneration() {
     document.getElementById('fingerprints-list').innerHTML = '';
 
     try {
+        // Fetch all verse metadata from Quran.com API
         const versesData = await quranAPI.getVersesWithAudio(surahNumber, reciterId);
         
         console.log(`Total verses fetched: ${versesData.length}`);
+        console.log(`Sample verse:`, versesData[0]);
         
         for (let verseIndex = 0; verseIndex < versesData.length; verseIndex++) {
             if (!isGenerating) break;
@@ -53,21 +79,25 @@ async function startGeneration() {
             const current = verseIndex + 1;
             const percentage = Math.round((current / surahTotalVerses) * 100);
             
+            // Update progress
             progressText.textContent = `Processing verse ${current} of ${surahTotalVerses}`;
             progressPercentage.textContent = `${percentage}%`;
             progressBar.style.width = `${percentage}%`;
 
+            // Generate fingerprint
             const fingerprint = await quranAPI.generateFingerprint(
-                surahNumber,
-                parseInt(verseNumber),
+                surahNumber, 
+                parseInt(verseNumber), 
                 audioProcessor
             );
 
-            // Extract text data from API response
+            // ⭐ Extract and combine text properly ⭐
+            const textData = extractVerseText(verseData);
+
             const completeData = {
                 id: parseInt(verseNumber),
                 ayah: parseInt(verseNumber),
-                arabic: verseData.text_uthmani || verseData.text_imlaei || "",
+                arabic: verseData.text_imlaei || verseData.text_uthmani || "",
                 transliteration: (verseData.transliterations && verseData.transliterations.length > 0) ? verseData.transliterations[0].text : "",
                 translation: (verseData.translations && verseData.translations.length > 0) ? verseData.translations[0].text : "",
                 audioUrl: fingerprint.audioUrl,
@@ -75,26 +105,29 @@ async function startGeneration() {
             };
 
             console.log(`Verse ${verseNumber}:`, {
-                arabic: completeData.arabic.substring(0, 20),
-                transliteration: completeData.transliteration.substring(0, 20),
-                translation: completeData.translation.substring(0, 20)
+                arabic: completeData.arabic.substring(0, 30),
+                transliteration: completeData.transliteration.substring(0, 30),
+                translation: completeData.translation.substring(0, 30)
             });
 
             generatedFingerprints.push(completeData);
 
-            document.getElementById('current-verse-text').textContent =
+            // Update current verse display
+            document.getElementById('current-verse-text').textContent = 
                 `Surah ${surahNumber}, Verse ${verseNumber}`;
-            document.getElementById('current-verse-arabic').textContent =
+            document.getElementById('current-verse-arabic').textContent = 
                 completeData.arabic || "-";
-            document.getElementById('current-duration').textContent =
+            document.getElementById('current-duration').textContent = 
                 `${fingerprint.duration}s`;
-            document.getElementById('current-energy').textContent =
+            document.getElementById('current-energy').textContent = 
                 fingerprint.fingerprint.energy;
-            document.getElementById('current-centroid').textContent =
+            document.getElementById('current-centroid').textContent = 
                 `${fingerprint.fingerprint.centroid} Hz`;
 
+            // Add to list
             addFingerprintToList(completeData);
 
+            // Delay to avoid rate limiting
             await new Promise(resolve => setTimeout(resolve, 500));
         }
 
@@ -149,6 +182,7 @@ function downloadJSON() {
         generatedAt: new Date().toISOString(),
         fingerprints: generatedFingerprints
     };
+
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -163,6 +197,7 @@ function downloadQuranDataJS() {
         alert('❌ Please generate fingerprints first!');
         return;
     }
+
     const surahName = currentSurah === 36 ? 'Yasin' : currentSurah === 67 ? 'Al-Mulk' : `Surah${currentSurah}`;
     const surahKey = currentSurah === 36 ? 'yasin' : currentSurah === 67 ? 'mulk' : `surah${currentSurah}`;
     
@@ -183,7 +218,7 @@ function downloadQuranDataJS() {
         }`).join(',\n');
 
     const content = `// Quran Database - Surah ${surahName}
-// Auto-generated from Quran.com API
+// Auto-generated from Quran.com API (Mishary Rashid Alafasy)
 // Generated: ${new Date().toISOString()}
 
 const QURAN_DATA = {
@@ -200,6 +235,7 @@ ${ayahsContent}
     }
 };
 
+// Recording settings
 const RECORDING_SETTINGS = {
     minLength: 5,
     maxLength: 10,
@@ -207,6 +243,7 @@ const RECORDING_SETTINGS = {
     channels: 1
 };
 
+// Matching thresholds
 const MATCH_THRESHOLDS = {
     excellent: 80,
     good: 60,
@@ -214,6 +251,7 @@ const MATCH_THRESHOLDS = {
     minimum: 30
 };
 
+// Available reciters
 const AVAILABLE_RECITERS = {
     7: { name: 'Mishary Rashid Alafasy', style: 'Clear, Moderate' },
     1: { name: 'AbdulBaset AbdulSamad', style: 'Mujawwad' },
@@ -241,6 +279,7 @@ function copyToClipboard() {
     });
 }
 
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Fingerprint Builder Ready');
     console.log('Quran.com API:', quranAPI.baseUrl);

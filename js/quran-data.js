@@ -1,6 +1,6 @@
 // Quran Database - Surah Yasin
 // Auto-generated from Quran.com API (Mishary Rashid Alafasy)
-// Generated: 2026-02-20T19:30:39.904Z
+// Generated: 2026-02-20T20:40:22.875Z
 
 const QURAN_DATA = {
     yasin: {
@@ -14,9 +14,9 @@ const QURAN_DATA = {
         {
             id: 1,
             ayah: 1,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭬ",
+            transliteration: "ya-seen",
+            translation: "Ya Seen",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036001.mp3",
             fingerprint: {
                 duration: 4.56,
@@ -29,9 +29,9 @@ const QURAN_DATA = {
         {
             id: 2,
             ayah: 2,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭮ ﭯ",
+            transliteration: "wal-qur'āni l-ḥakīmi",
+            translation: "By the Quran the Wise",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036002.mp3",
             fingerprint: {
                 duration: 4.78,
@@ -44,9 +44,9 @@ const QURAN_DATA = {
         {
             id: 3,
             ayah: 3,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭱ ﭲ ﭳ",
+            transliteration: "innaka lamina l-mur'salīna",
+            translation: "Indeed, you (are) among the Messengers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036003.mp3",
             fingerprint: {
                 duration: 5.81,
@@ -59,9 +59,9 @@ const QURAN_DATA = {
         {
             id: 4,
             ayah: 4,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭵ ﭶ ﭷ",
+            transliteration: "ʿalā ṣirāṭin mus'taqīmin",
+            translation: "On a Path Straight",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036004.mp3",
             fingerprint: {
                 duration: 6.21,
@@ -74,9 +74,9 @@ const QURAN_DATA = {
         {
             id: 5,
             ayah: 5,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭹ ﭺ ﭻ",
+            transliteration: "tanzīla l-ʿazīzi l-raḥīmi",
+            translation: "A revelation (of) the All-Mighty the Most Merciful",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036005.mp3",
             fingerprint: {
                 duration: 6.52,
@@ -89,9 +89,9 @@ const QURAN_DATA = {
         {
             id: 6,
             ayah: 6,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭽ ﭾ ﭿ ﮀ ﮁ ﮂ ﮃ",
+            transliteration: "litundhira qawman mā undhira ābāuhum fahum ghāfilūna",
+            translation: "That you may warn a people not were warned their forefathers so they (are) heedless",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036006.mp3",
             fingerprint: {
                 duration: 13.78,
@@ -104,9 +104,9 @@ const QURAN_DATA = {
         {
             id: 7,
             ayah: 7,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮅ ﮆ ﮇ ﮈ ﮉ ﮊ ﮋ ﮌ",
+            transliteration: "laqad ḥaqqa l-qawlu ʿalā aktharihim fahum lā yu'minūna",
+            translation: "Certainly (has) proved true the word upon most of them so they (do) not believe",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036007.mp3",
             fingerprint: {
                 duration: 9.1,
@@ -119,9 +119,9 @@ const QURAN_DATA = {
         {
             id: 8,
             ayah: 8,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮎ ﮏ ﮐ ﮑ ﮒ ﮓ ﮔ ﮕ ﮖ ﮗ",
+            transliteration: "innā jaʿalnā fī aʿnāqihim aghlālan fahiya ilā l-adhqāni fahum muq'maḥūna",
+            translation: "Indeed, We [We] have placed on their necks iron collars and they (are up) to the chins so they (are with) heads raised up",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036008.mp3",
             fingerprint: {
                 duration: 15.15,
@@ -134,9 +134,9 @@ const QURAN_DATA = {
         {
             id: 9,
             ayah: 9,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮙ ﮚ ﮛ ﮜ ﮝ ﮞ ﮟ ﮠ ﮡ ﮢ ﮣ ﮤ",
+            transliteration: "wajaʿalnā min bayni aydīhim saddan wamin khalfihim saddan fa-aghshaynāhum fahum lā yub'ṣirūna",
+            translation: "And We have made from before/between their hands/their front a barrier and from behind them a barrier and We covered them so they (do) not see",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036009.mp3",
             fingerprint: {
                 duration: 15.56,
@@ -149,9 +149,9 @@ const QURAN_DATA = {
         {
             id: 10,
             ayah: 10,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮦ ﮧ ﮨ ﮩ ﮪ ﮫ ﮬ ﮭ",
+            transliteration: "wasawāon ʿalayhim a-andhartahum am lam tundhir'hum lā yu'minūna",
+            translation: "And it (is) same to them whether you warn them or (do) not warn them not they will believe",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036010.mp3",
             fingerprint: {
                 duration: 12.97,
@@ -164,9 +164,9 @@ const QURAN_DATA = {
         {
             id: 11,
             ayah: 11,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ ﯗﯘ ﯙ ﯚ ﯛ ﯜ",
+            transliteration: "innamā tundhiru mani ittabaʿa l-dhik'ra wakhashiya l-raḥmāna bil-ghaybi fabashir'hu bimaghfiratin wa-ajrin karīmin",
+            translation: "Only you (can) warn (him) who follows the Reminder and fears the Most Gracious in the unseen So give him glad tidings of forgiveness and a reward noble",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036011.mp3",
             fingerprint: {
                 duration: 19.51,
@@ -179,9 +179,9 @@ const QURAN_DATA = {
         {
             id: 12,
             ayah: 12,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯞ ﯟ ﯠ ﯡ ﯢ ﯣ ﯤ ﯥﯦ ﯧ ﯨ ﯩ ﯪ ﯫ ﯬ",
+            transliteration: "innā naḥnu nuḥ'yī l-mawtā wanaktubu mā qaddamū waāthārahum wakulla shayin aḥṣaynāhu fī imāmin mubīnin",
+            translation: "Indeed, We [We] [We] give life (to) the dead and We record what they have sent before and their footprints and every thing We have enumerated it in a Register clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036012.mp3",
             fingerprint: {
                 duration: 17.28,
@@ -194,9 +194,9 @@ const QURAN_DATA = {
         {
             id: 13,
             ayah: 13,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ ﭘ",
+            transliteration: "wa-iḍ'rib lahum mathalan aṣḥāba l-qaryati idh jāahā l-mur'salūna",
+            translation: "And set forth to them an example (of the) companions (of) the city when came to it the Messengers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036013.mp3",
             fingerprint: {
                 duration: 11.82,
@@ -209,9 +209,9 @@ const QURAN_DATA = {
         {
             id: 14,
             ayah: 14,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ ﭤ",
+            transliteration: "idh arsalnā ilayhimu ith'nayni fakadhabūhumā faʿazzaznā bithālithin faqālū innā ilaykum mur'salūna",
+            translation: "When We sent to them two (Messengers) but they denied both of them so We strengthened them with a third and they said Indeed, We to you (are) Messengers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036014.mp3",
             fingerprint: {
                 duration: 21.9,
@@ -224,9 +224,9 @@ const QURAN_DATA = {
         {
             id: 15,
             ayah: 15,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭦ ﭧ ﭨ ﭩ ﭪ ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ ﭴ",
+            transliteration: "qālū mā antum illā basharun mith'lunā wamā anzala l-raḥmānu min shayin in antum illā takdhibūna",
+            translation: "They said Not you (are) but human beings like us and not has revealed the Most Gracious any thing Not you (are) but lying",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036015.mp3",
             fingerprint: {
                 duration: 20.14,
@@ -239,9 +239,9 @@ const QURAN_DATA = {
         {
             id: 16,
             ayah: 16,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ",
+            transliteration: "qālū rabbunā yaʿlamu innā ilaykum lamur'salūna",
+            translation: "They said Our Lord knows that we to you (are) surely Messengers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036016.mp3",
             fingerprint: {
                 duration: 10.03,
@@ -254,9 +254,9 @@ const QURAN_DATA = {
         {
             id: 17,
             ayah: 17,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭽ ﭾ ﭿ ﮀ ﮁ",
+            transliteration: "wamā ʿalaynā illā l-balāghu l-mubīnu",
+            translation: "And not (is) on us except the conveyance clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036017.mp3",
             fingerprint: {
                 duration: 7.88,
@@ -269,9 +269,9 @@ const QURAN_DATA = {
         {
             id: 18,
             ayah: 18,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮃ ﮄ ﮅ ﮆﮇ ﮈ ﮉ ﮊ ﮋ ﮌ ﮍ ﮎ ﮏ",
+            transliteration: "qālū innā taṭayyarnā bikum la-in lam tantahū lanarjumannakum walayamassannakum minnā ʿadhābun alīmun",
+            translation: "They said Indeed, we [we] see an evil omen from you If not you desist surely, we will stone you and surely will touch you from us a punishment painful",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036018.mp3",
             fingerprint: {
                 duration: 20.34,
@@ -284,9 +284,9 @@ const QURAN_DATA = {
         {
             id: 19,
             ayah: 19,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮑ ﮒ ﮓﮔ ﮕ ﮖﮗ ﮘ ﮙ ﮚ ﮛ",
+            transliteration: "qālū ṭāirukum maʿakum a-in dhukkir'tum bal antum qawmun mus'rifūna",
+            translation: "They said Your evil omen (be) with you Is it because you are admonished Nay you (are) a people transgressing",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036019.mp3",
             fingerprint: {
                 duration: 16.36,
@@ -299,9 +299,9 @@ const QURAN_DATA = {
         {
             id: 20,
             ayah: 20,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮝ ﮞ ﮟ ﮠ ﮡ ﮢ ﮣ ﮤ ﮥ ﮦ",
+            transliteration: "wajāa min aqṣā l-madīnati rajulun yasʿā qāla yāqawmi ittabiʿū l-mur'salīna",
+            translation: "And came from (the) farthest end (of) the city a man running He said O my People Follow the Messengers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036020.mp3",
             fingerprint: {
                 duration: 12.94,
@@ -314,9 +314,9 @@ const QURAN_DATA = {
         {
             id: 21,
             ayah: 21,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮨ ﮩ ﮪ ﮫ ﮬ ﮭ ﮮ",
+            transliteration: "ittabiʿū man lā yasalukum ajran wahum muh'tadūna",
+            translation: "Follow (those) who (do) not ask (of) you any payment and they (are) rightly guided",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036021.mp3",
             fingerprint: {
                 duration: 10.17,
@@ -329,9 +329,9 @@ const QURAN_DATA = {
         {
             id: 22,
             ayah: 22,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ ﯗ ﯘ",
+            transliteration: "wamā liya lā aʿbudu alladhī faṭaranī wa-ilayhi tur'jaʿūna",
+            translation: "And what (is) for me (that) not I worship the One Who created me and to Whom you will be returned",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036022.mp3",
             fingerprint: {
                 duration: 10.43,
@@ -344,9 +344,9 @@ const QURAN_DATA = {
         {
             id: 23,
             ayah: 23,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯚ ﯛ ﯜ ﯝ ﯞ ﯟ ﯠ ﯡ ﯢ ﯣ ﯤ ﯥ ﯦ ﯧ ﯨ",
+            transliteration: "a-attakhidhu min dūnihi ālihatan in yurid'ni l-raḥmānu biḍurrin lā tugh'ni ʿannī shafāʿatuhum shayan walā yunqidhūni",
+            translation: "Should I take besides Him besides Him gods If intends for me the Most Gracious any harm not will avail [from] me their intercession (in) anything and not they (can) save me",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036023.mp3",
             fingerprint: {
                 duration: 19.48,
@@ -359,9 +359,9 @@ const QURAN_DATA = {
         {
             id: 24,
             ayah: 24,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯪ ﯫ ﯬ ﯭ ﯮ",
+            transliteration: "innī idhan lafī ḍalālin mubīnin",
+            translation: "Indeed, I then surely would be in an error clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036024.mp3",
             fingerprint: {
                 duration: 9.7,
@@ -374,9 +374,9 @@ const QURAN_DATA = {
         {
             id: 25,
             ayah: 25,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯰ ﯱ ﯲ ﯳ",
+            transliteration: "innī āmantu birabbikum fa-is'maʿūni",
+            translation: "Indeed, I [I] have believed in your Lord so listen to me",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036025.mp3",
             fingerprint: {
                 duration: 10.07,
@@ -389,9 +389,9 @@ const QURAN_DATA = {
         {
             id: 26,
             ayah: 26,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯵ ﯶ ﯷﯸ ﯹ ﯺ ﯻ ﯼ",
+            transliteration: "qīla ud'khuli l-janata qāla yālayta qawmī yaʿlamūna",
+            translation: "It was said Enter Paradise He said I wish my people knew",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036026.mp3",
             fingerprint: {
                 duration: 9.86,
@@ -404,9 +404,9 @@ const QURAN_DATA = {
         {
             id: 27,
             ayah: 27,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯾ ﯿ ﰀ ﰁ ﰂ ﰃ ﰄ",
+            transliteration: "bimā ghafara lī rabbī wajaʿalanī mina l-muk'ramīna",
+            translation: "Of how has forgiven me my Lord and placed me among the honored ones",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036027.mp3",
             fingerprint: {
                 duration: 8.03,
@@ -419,9 +419,9 @@ const QURAN_DATA = {
         {
             id: 28,
             ayah: 28,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ",
+            transliteration: "wamā anzalnā ʿalā qawmihi min baʿdihi min jundin mina l-samāi wamā kunnā munzilīna",
+            translation: "And not We sent down upon his people after him after him any host from the heaven and not were We (to) send down",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036028.mp3",
             fingerprint: {
                 duration: 20.06,
@@ -434,9 +434,9 @@ const QURAN_DATA = {
         {
             id: 29,
             ayah: 29,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭠ ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ",
+            transliteration: "in kānat illā ṣayḥatan wāḥidatan fa-idhā hum khāmidūna",
+            translation: "Not it was but a shout one then behold They (were) extinguished",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036029.mp3",
             fingerprint: {
                 duration: 11.85,
@@ -449,9 +449,9 @@ const QURAN_DATA = {
         {
             id: 30,
             ayah: 30,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭩ ﭪ ﭫﭬ ﭭ ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ ﭴ",
+            transliteration: "yāḥasratan ʿalā l-ʿibādi mā yatīhim min rasūlin illā kānū bihi yastahziūna",
+            translation: "Alas for the servants Not came to them any Messenger but they did mock at him mock at him",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036030.mp3",
             fingerprint: {
                 duration: 15.68,
@@ -464,9 +464,9 @@ const QURAN_DATA = {
         {
             id: 31,
             ayah: 31,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ ﭼ ﭽ ﭾ ﭿ ﮀ",
+            transliteration: "alam yaraw kam ahlaknā qablahum mina l-qurūni annahum ilayhim lā yarjiʿūna",
+            translation: "Do not they see how many We destroyed before them of the generations That they to them will not return will not return",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036031.mp3",
             fingerprint: {
                 duration: 12.5,
@@ -479,9 +479,9 @@ const QURAN_DATA = {
         {
             id: 32,
             ayah: 32,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮂ ﮃ ﮄ ﮅ ﮆ ﮇ",
+            transliteration: "wa-in kullun lammā jamīʿun ladaynā muḥ'ḍarūna",
+            translation: "And surely all then together before Us (will be) brought",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036032.mp3",
             fingerprint: {
                 duration: 9.52,
@@ -494,9 +494,9 @@ const QURAN_DATA = {
         {
             id: 33,
             ayah: 33,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮉ ﮊ ﮋ ﮌ ﮍ ﮎ ﮏ ﮐ ﮑ ﮒ",
+            transliteration: "waāyatun lahumu l-arḍu l-maytatu aḥyaynāhā wa-akhrajnā min'hā ḥabban famin'hu yakulūna",
+            translation: "And a Sign for them (is) the earth dead We give it life and We bring forth from it grain and from it they eat",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036033.mp3",
             fingerprint: {
                 duration: 13.47,
@@ -509,9 +509,9 @@ const QURAN_DATA = {
         {
             id: 34,
             ayah: 34,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮔ ﮕ ﮖ ﮗ ﮘ ﮙ ﮚ ﮛ ﮜ ﮝ",
+            transliteration: "wajaʿalnā fīhā jannātin min nakhīlin wa-aʿnābin wafajjarnā fīhā mina l-ʿuyūni",
+            translation: "And We placed therein gardens of date-palms and grapevines and We caused to gush forth in it of the springs",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036034.mp3",
             fingerprint: {
                 duration: 14.68,
@@ -524,9 +524,9 @@ const QURAN_DATA = {
         {
             id: 35,
             ayah: 35,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮟ ﮠ ﮡ ﮢ ﮣ ﮤﮥ ﮦ ﮧ",
+            transliteration: "liyakulū min thamarihi wamā ʿamilathu aydīhim afalā yashkurūna",
+            translation: "That they may eat of its fruit And not made it their hands So will not they be grateful",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036035.mp3",
             fingerprint: {
                 duration: 10.4,
@@ -539,9 +539,9 @@ const QURAN_DATA = {
         {
             id: 36,
             ayah: 36,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮩ ﮪ ﮫ ﮬ ﮭ ﮮ ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ",
+            transliteration: "sub'ḥāna alladhī khalaqa l-azwāja kullahā mimmā tunbitu l-arḍu wamin anfusihim wamimmā lā yaʿlamūna",
+            translation: "Glory be (to) the One Who created (in) pairs all of what grows the earth and of themselves and of what not they know",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036036.mp3",
             fingerprint: {
                 duration: 16.46,
@@ -554,9 +554,9 @@ const QURAN_DATA = {
         {
             id: 37,
             ayah: 37,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯘ ﯙ ﯚ ﯛ ﯜ ﯝ ﯞ ﯟ ﯠ",
+            transliteration: "waāyatun lahumu al-laylu naslakhu min'hu l-nahāra fa-idhā hum muẓ'limūna",
+            translation: "And a Sign for them (is) the night We withdraw from it the day Then behold They (are) those in darkness",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036037.mp3",
             fingerprint: {
                 duration: 11.92,
@@ -569,9 +569,9 @@ const QURAN_DATA = {
         {
             id: 38,
             ayah: 38,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯢ ﯣ ﯤ ﯥﯦ ﯧ ﯨ ﯩ ﯪ",
+            transliteration: "wal-shamsu tajrī limus'taqarrin lahā dhālika taqdīru l-ʿazīzi l-ʿalīmi",
+            translation: "And the sun runs to a term appointed for it That (is the) Decree (of) the All-Mighty the All-Knowing",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036038.mp3",
             fingerprint: {
                 duration: 10.86,
@@ -584,9 +584,9 @@ const QURAN_DATA = {
         {
             id: 39,
             ayah: 39,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯬ ﯭ ﯮ ﯯ ﯰ ﯱ ﯲ",
+            transliteration: "wal-qamara qaddarnāhu manāzila ḥattā ʿāda kal-ʿur'jūni l-qadīmi",
+            translation: "And the moon  We have ordained for it phases until it returns like the date stalk the old",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036039.mp3",
             fingerprint: {
                 duration: 9.66,
@@ -599,9 +599,9 @@ const QURAN_DATA = {
         {
             id: 40,
             ayah: 40,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯴ ﯵ ﯶ ﯷ ﯸ ﯹ ﯺ ﯻ ﯼ ﯽ ﯾﯿ ﰀ ﰁ ﰂ ﰃ",
+            transliteration: "lā l-shamsu yanbaghī lahā an tud'rika l-qamara walā al-laylu sābiqu l-nahāri wakullun fī falakin yasbaḥūna",
+            translation: "Not the sun is permitted for it  that it overtakes the moon and not the night (can) outstrip the day but all in an orbit they are floating",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036040.mp3",
             fingerprint: {
                 duration: 20.12,
@@ -614,9 +614,9 @@ const QURAN_DATA = {
         {
             id: 41,
             ayah: 41,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ ﭘ",
+            transliteration: "waāyatun lahum annā ḥamalnā dhurriyyatahum fī l-ful'ki l-mashḥūni",
+            translation: "And a Sign for them (is) that We carried their offspring in the ship laden",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036041.mp3",
             fingerprint: {
                 duration: 10.58,
@@ -629,9 +629,9 @@ const QURAN_DATA = {
         {
             id: 42,
             ayah: 42,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ",
+            transliteration: "wakhalaqnā lahum min mith'lihi mā yarkabūna",
+            translation: "And We created for them from (the) likes of it what they ride",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036042.mp3",
             fingerprint: {
                 duration: 8.13,
@@ -644,9 +644,9 @@ const QURAN_DATA = {
         {
             id: 43,
             ayah: 43,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ ﭧ ﭨ ﭩ",
+            transliteration: "wa-in nasha nugh'riq'hum falā ṣarīkha lahum walā hum yunqadhūna",
+            translation: "And if We will We could drown them then not (would be) a responder to a cry for them and not they would be saved",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036043.mp3",
             fingerprint: {
                 duration: 10.47,
@@ -659,9 +659,9 @@ const QURAN_DATA = {
         {
             id: 44,
             ayah: 44,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭫ ﭬ ﭭ ﭮ ﭯ ﭰ",
+            transliteration: "illā raḥmatan minnā wamatāʿan ilā ḥīnin",
+            translation: "Except (by) Mercy from Us and provision for a time",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036044.mp3",
             fingerprint: {
                 duration: 8.72,
@@ -674,9 +674,9 @@ const QURAN_DATA = {
         {
             id: 45,
             ayah: 45,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭲ ﭳ ﭴ ﭵ ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ ﭼ",
+            transliteration: "wa-idhā qīla lahumu ittaqū mā bayna aydīkum wamā khalfakum laʿallakum tur'ḥamūna",
+            translation: "And when it is said to them Fear what (is) before you (is) before you and what (is) behind you so that you may receive mercy",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036045.mp3",
             fingerprint: {
                 duration: 11.75,
@@ -689,9 +689,9 @@ const QURAN_DATA = {
         {
             id: 46,
             ayah: 46,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭾ ﭿ ﮀ ﮁ ﮂ ﮃ ﮄ ﮅ ﮆ ﮇ ﮈ",
+            transliteration: "wamā tatīhim min āyatin min āyāti rabbihim illā kānū ʿanhā muʿ'riḍīna",
+            translation: "And not comes to them of a Sign from (the) Signs (of) their Lord but they from it turn away",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036046.mp3",
             fingerprint: {
                 duration: 12.38,
@@ -704,9 +704,9 @@ const QURAN_DATA = {
         {
             id: 47,
             ayah: 47,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮊ ﮋ ﮌ ﮍ ﮎ ﮏ ﮐ ﮑ ﮒ ﮓ ﮔ ﮕ ﮖ ﮗ ﮘ ﮙ ﮚ ﮛ ﮜ ﮝ ﮞ ﮟ ﮠ ﮡ",
+            transliteration: "wa-idhā qīla lahum anfiqū mimmā razaqakumu l-lahu qāla alladhīna kafarū lilladhīna āmanū anuṭ'ʿimu man law yashāu l-lahu aṭʿamahu in antum illā fī ḍalālin mubīnin",
+            translation: "And when it is said to them Spend from what (has) provided you Allah Said those who disbelieved to those who believed Should we feed whom if Allah willed  Allah willed  He would have fed him Not (are) you except in an error clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036047.mp3",
             fingerprint: {
                 duration: 30.67,
@@ -719,9 +719,9 @@ const QURAN_DATA = {
         {
             id: 48,
             ayah: 48,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮣ ﮤ ﮥ ﮦ ﮧ ﮨ ﮩ",
+            transliteration: "wayaqūlūna matā hādhā l-waʿdu in kuntum ṣādiqīna",
+            translation: "And they say When (is) this promise if you are truthful",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036048.mp3",
             fingerprint: {
                 duration: 9.82,
@@ -734,9 +734,9 @@ const QURAN_DATA = {
         {
             id: 49,
             ayah: 49,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮫ ﮬ ﮭ ﮮ ﮯ ﮰ ﮱ ﯓ",
+            transliteration: "mā yanẓurūna illā ṣayḥatan wāḥidatan takhudhuhum wahum yakhiṣṣimūna",
+            translation: "Not they await except a shout one it will seize them while they are disputing",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036049.mp3",
             fingerprint: {
                 duration: 12.55,
@@ -749,9 +749,9 @@ const QURAN_DATA = {
         {
             id: 50,
             ayah: 50,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯕ ﯖ ﯗ ﯘ ﯙ ﯚ ﯛ",
+            transliteration: "falā yastaṭīʿūna tawṣiyatan walā ilā ahlihim yarjiʿūna",
+            translation: "Then not they will be able (to) make a will and not to their people they (can) return",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036050.mp3",
             fingerprint: {
                 duration: 12.33,
@@ -764,9 +764,9 @@ const QURAN_DATA = {
         {
             id: 51,
             ayah: 51,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯝ ﯞ ﯟ ﯠ ﯡ ﯢ ﯣ ﯤ ﯥ ﯦ",
+            transliteration: "wanufikha fī l-ṣūri fa-idhā hum mina l-ajdāthi ilā rabbihim yansilūna",
+            translation: "And will be blown [in] the trumpet and behold They from the graves to their Lord [they] will hasten",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036051.mp3",
             fingerprint: {
                 duration: 12.01,
@@ -779,9 +779,9 @@ const QURAN_DATA = {
         {
             id: 52,
             ayah: 52,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯨ ﯩ ﯪ ﯫ ﯬ ﯭﯮ ﯯ ﯰ ﯱ ﯲ ﯳ ﯴ ﯵ",
+            transliteration: "qālū yāwaylanā man baʿathanā min marqadinā hādhā mā waʿada l-raḥmānu waṣadaqa l-mur'salūna",
+            translation: "They [will] say O woe to us Who has raised us from our sleeping place This (is) What (had) promised the Most Gracious and told (the) truth the Messengers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036052.mp3",
             fingerprint: {
                 duration: 16.46,
@@ -794,9 +794,9 @@ const QURAN_DATA = {
         {
             id: 53,
             ayah: 53,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯷ ﯸ ﯹ ﯺ ﯻ ﯼ ﯽ ﯾ ﯿ ﰀ",
+            transliteration: "in kānat illā ṣayḥatan wāḥidatan fa-idhā hum jamīʿun ladaynā muḥ'ḍarūna",
+            translation: "Not it will be but a shout single so behold They all before Us (will be) brought",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036053.mp3",
             fingerprint: {
                 duration: 13.92,
@@ -809,9 +809,9 @@ const QURAN_DATA = {
         {
             id: 54,
             ayah: 54,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﰂ ﰃ ﰄ ﰅ ﰆ ﰇ ﰈ ﰉ ﰊ ﰋ ﰌ",
+            transliteration: "fal-yawma lā tuẓ'lamu nafsun shayan walā tuj'zawna illā mā kuntum taʿmalūna",
+            translation: "So this Day not will be wronged a soul (in) anything and not you will be recompensed except (for) what you used (to) do",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036054.mp3",
             fingerprint: {
                 duration: 14.72,
@@ -824,9 +824,9 @@ const QURAN_DATA = {
         {
             id: 55,
             ayah: 55,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ",
+            transliteration: "inna aṣḥāba l-janati l-yawma fī shughulin fākihūna",
+            translation: "Indeed (the) companions (of) Paradise this Day [in] will be occupied (in) amusement",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036055.mp3",
             fingerprint: {
                 duration: 11.62,
@@ -839,9 +839,9 @@ const QURAN_DATA = {
         {
             id: 56,
             ayah: 56,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭙ ﭚ ﭛ ﭜ ﭝ ﭞ ﭟ",
+            transliteration: "hum wa-azwājuhum fī ẓilālin ʿalā l-arāiki muttakiūna",
+            translation: "They and their spouses in shades on [the] couches reclining",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036056.mp3",
             fingerprint: {
                 duration: 10.99,
@@ -854,9 +854,9 @@ const QURAN_DATA = {
         {
             id: 57,
             ayah: 57,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭡ ﭢ ﭣ ﭤ ﭥ ﭦ",
+            transliteration: "lahum fīhā fākihatun walahum mā yaddaʿūna",
+            translation: "For them therein (are) fruits and for them (is) whatever they call for",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036057.mp3",
             fingerprint: {
                 duration: 10.21,
@@ -869,9 +869,9 @@ const QURAN_DATA = {
         {
             id: 58,
             ayah: 58,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭨ ﭩ ﭪ ﭫ ﭬ",
+            transliteration: "salāmun qawlan min rabbin raḥīmin",
+            translation: "Peace A word from a Lord Most Merciful",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036058.mp3",
             fingerprint: {
                 duration: 7.94,
@@ -884,9 +884,9 @@ const QURAN_DATA = {
         {
             id: 59,
             ayah: 59,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭮ ﭯ ﭰ ﭱ",
+            transliteration: "wa-im'tāzū l-yawma ayyuhā l-muj'rimūna",
+            translation: "But stand apart today O criminals O criminals",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036059.mp3",
             fingerprint: {
                 duration: 7.37,
@@ -899,9 +899,9 @@ const QURAN_DATA = {
         {
             id: 60,
             ayah: 60,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭳ ﭴ ﭵ ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ ﭼﭽ ﭾ ﭿ ﮀ ﮁ",
+            transliteration: "alam aʿhad ilaykum yābanī ādama an lā taʿbudū l-shayṭāna innahu lakum ʿaduwwun mubīnun",
+            translation: "Did not I enjoin upon you O Children of Adam O Children of Adam That (do) not worship the Shaitaan indeed, he (is) for you an enemy clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036060.mp3",
             fingerprint: {
                 duration: 19.31,
@@ -914,9 +914,9 @@ const QURAN_DATA = {
         {
             id: 61,
             ayah: 61,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮃ ﮄﮅ ﮆ ﮇ ﮈ",
+            transliteration: "wa-ani uʿ'budūnī hādhā ṣirāṭun mus'taqīmun",
+            translation: "And that you worship Me This (is) a Path Straight",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036061.mp3",
             fingerprint: {
                 duration: 9.31,
@@ -929,9 +929,9 @@ const QURAN_DATA = {
         {
             id: 62,
             ayah: 62,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮊ ﮋ ﮌ ﮍ ﮎﮏ ﮐ ﮑ ﮒ",
+            transliteration: "walaqad aḍalla minkum jibillan kathīran afalam takūnū taʿqilūna",
+            translation: "And indeed he led astray from you a multitude great Then did not you use reason",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036062.mp3",
             fingerprint: {
                 duration: 12.21,
@@ -944,9 +944,9 @@ const QURAN_DATA = {
         {
             id: 63,
             ayah: 63,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮔ ﮕ ﮖ ﮗ ﮘ",
+            transliteration: "hādhihi jahannamu allatī kuntum tūʿadūna",
+            translation: "This (is) (the) Hell which you were promised",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036063.mp3",
             fingerprint: {
                 duration: 8.79,
@@ -959,9 +959,9 @@ const QURAN_DATA = {
         {
             id: 64,
             ayah: 64,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮚ ﮛ ﮜ ﮝ ﮞ",
+            transliteration: "iṣ'lawhā l-yawma bimā kuntum takfurūna",
+            translation: "Burn therein today because you used to disbelieve",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036064.mp3",
             fingerprint: {
                 duration: 8.24,
@@ -974,9 +974,9 @@ const QURAN_DATA = {
         {
             id: 65,
             ayah: 65,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮠ ﮡ ﮢ ﮣ ﮤ ﮥ ﮦ ﮧ ﮨ ﮩ ﮪ",
+            transliteration: "al-yawma nakhtimu ʿalā afwāhihim watukallimunā aydīhim watashhadu arjuluhum bimā kānū yaksibūna",
+            translation: "This Day We will seal [on] their mouths and will speak to Us their hands and will bear witness their feet about what they used to earn",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036065.mp3",
             fingerprint: {
                 duration: 17.13,
@@ -989,9 +989,9 @@ const QURAN_DATA = {
         {
             id: 66,
             ayah: 66,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮬ ﮭ ﮮ ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ",
+            transliteration: "walaw nashāu laṭamasnā ʿalā aʿyunihim fa-is'tabaqū l-ṣirāṭa fa-annā yub'ṣirūna",
+            translation: "And if We willed We (would have) surely obliterated [over] their eyes then they (would) race (to find) the path then how (could) they see",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036066.mp3",
             fingerprint: {
                 duration: 14.39,
@@ -1004,9 +1004,9 @@ const QURAN_DATA = {
         {
             id: 67,
             ayah: 67,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯗ ﯘ ﯙ ﯚ ﯛ ﯜ ﯝ ﯞ ﯟ ﯠ",
+            transliteration: "walaw nashāu lamasakhnāhum ʿalā makānatihim famā is'taṭāʿū muḍiyyan walā yarjiʿūna",
+            translation: "And if We willed surely, We (would have) transformed them in their places then not they would have been able to proceed and not return",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036067.mp3",
             fingerprint: {
                 duration: 14.06,
@@ -1019,9 +1019,9 @@ const QURAN_DATA = {
         {
             id: 68,
             ayah: 68,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯢ ﯣ ﯤ ﯥ ﯦﯧ ﯨ ﯩ",
+            transliteration: "waman nuʿammir'hu nunakkis'hu fī l-khalqi afalā yaʿqilūna",
+            translation: "And (he) whom We grant him long life We reverse him in the creation Then will not they use intellect",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036068.mp3",
             fingerprint: {
                 duration: 10.32,
@@ -1034,9 +1034,9 @@ const QURAN_DATA = {
         {
             id: 69,
             ayah: 69,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯫ ﯬ ﯭ ﯮ ﯯ ﯰﯱ ﯲ ﯳ ﯴ ﯵ ﯶ ﯷ",
+            transliteration: "wamā ʿallamnāhu l-shiʿ'ra wamā yanbaghī lahu in huwa illā dhik'run waqur'ānun mubīnun",
+            translation: "And not We taught him [the] poetry and not it is befitting for him Not it (is) except a Reminder and a Quran clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036069.mp3",
             fingerprint: {
                 duration: 14.81,
@@ -1049,9 +1049,9 @@ const QURAN_DATA = {
         {
             id: 70,
             ayah: 70,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯹ ﯺ ﯻ ﯼ ﯽ ﯾ ﯿ ﰀ",
+            transliteration: "liyundhira man kāna ḥayyan wayaḥiqqa l-qawlu ʿalā l-kāfirīna",
+            translation: "To warn (him) who is alive and may be proved true the Word against the disbelievers",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036070.mp3",
             fingerprint: {
                 duration: 11.27,
@@ -1064,9 +1064,9 @@ const QURAN_DATA = {
         {
             id: 71,
             ayah: 71,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭑ ﭒ ﭓ ﭔ ﭕ ﭖ ﭗ ﭘ ﭙ ﭚ ﭛ ﭜ",
+            transliteration: "awalam yaraw annā khalaqnā lahum mimmā ʿamilat aydīnā anʿāman fahum lahā mālikūna",
+            translation: "Do not they see that We [We] created for them from what have made Our hands cattle then they [for them] (are the) owners",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036071.mp3",
             fingerprint: {
                 duration: 16.86,
@@ -1079,9 +1079,9 @@ const QURAN_DATA = {
         {
             id: 72,
             ayah: 72,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭞ ﭟ ﭠ ﭡ ﭢ ﭣ",
+            transliteration: "wadhallalnāhā lahum famin'hā rakūbuhum wamin'hā yakulūna",
+            translation: "And We have tamed them for them so some of them  they ride them and some of them they eat",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036072.mp3",
             fingerprint: {
                 duration: 9.64,
@@ -1094,9 +1094,9 @@ const QURAN_DATA = {
         {
             id: 73,
             ayah: 73,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭥ ﭦ ﭧ ﭨﭩ ﭪ ﭫ",
+            transliteration: "walahum fīhā manāfiʿu wamashāribu afalā yashkurūna",
+            translation: "And for them therein (are) benefits and drinks so (will) not they give thanks",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036073.mp3",
             fingerprint: {
                 duration: 8.56,
@@ -1109,9 +1109,9 @@ const QURAN_DATA = {
         {
             id: 74,
             ayah: 74,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭭ ﭮ ﭯ ﭰ ﭱ ﭲ ﭳ",
+            transliteration: "wa-ittakhadhū min dūni l-lahi ālihatan laʿallahum yunṣarūna",
+            translation: "But they have taken besides besides Allah gods that they may be helped",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036074.mp3",
             fingerprint: {
                 duration: 10.55,
@@ -1124,9 +1124,9 @@ const QURAN_DATA = {
         {
             id: 75,
             ayah: 75,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭵ ﭶ ﭷ ﭸ ﭹ ﭺ ﭻ",
+            transliteration: "lā yastaṭīʿūna naṣrahum wahum lahum jundun muḥ'ḍarūna",
+            translation: "Not they are able to help them but they  for them (are) hosts (who will) be brought",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036075.mp3",
             fingerprint: {
                 duration: 10.42,
@@ -1139,9 +1139,9 @@ const QURAN_DATA = {
         {
             id: 76,
             ayah: 76,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﭽ ﭾ ﭿﮀ ﮁ ﮂ ﮃ ﮄ ﮅ ﮆ",
+            transliteration: "falā yaḥzunka qawluhum innā naʿlamu mā yusirrūna wamā yuʿ'linūna",
+            translation: "So (let) not grieve you their speech Indeed, We [We] know what they conceal and what they declare",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036076.mp3",
             fingerprint: {
                 duration: 12.27,
@@ -1154,9 +1154,9 @@ const QURAN_DATA = {
         {
             id: 77,
             ayah: 77,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮈ ﮉ ﮊ ﮋ ﮌ ﮍ ﮎ ﮏ ﮐ ﮑ ﮒ",
+            transliteration: "awalam yara l-insānu annā khalaqnāhu min nuṭ'fatin fa-idhā huwa khaṣīmun mubīnun",
+            translation: "Does not see [the] man that We [We] created him from a semen-drop Then behold He (is) an opponent clear",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036077.mp3",
             fingerprint: {
                 duration: 14.85,
@@ -1169,9 +1169,9 @@ const QURAN_DATA = {
         {
             id: 78,
             ayah: 78,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮔ ﮕ ﮖ ﮗ ﮘﮙ ﮚ ﮛ ﮜ ﮝ ﮞ ﮟ",
+            transliteration: "waḍaraba lanā mathalan wanasiya khalqahu qāla man yuḥ'yī l-ʿiẓāma wahiya ramīmun",
+            translation: "And he sets forth for Us an example and forgets his (own) creation He says Who will give life (to) the bones while they (are) decomposed",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036078.mp3",
             fingerprint: {
                 duration: 12.37,
@@ -1184,9 +1184,9 @@ const QURAN_DATA = {
         {
             id: 79,
             ayah: 79,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮡ ﮢ ﮣ ﮤ ﮥ ﮦﮧ ﮨ ﮩ ﮪ ﮫ",
+            transliteration: "qul yuḥ'yīhā alladhī ansha-ahā awwala marratin wahuwa bikulli khalqin ʿalīmun",
+            translation: "Say He will give them life Who produced them (the) first time and He (is) of every creation All-Knower",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036079.mp3",
             fingerprint: {
                 duration: 14.03,
@@ -1199,9 +1199,9 @@ const QURAN_DATA = {
         {
             id: 80,
             ayah: 80,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﮭ ﮮ ﮯ ﮰ ﮱ ﯓ ﯔ ﯕ ﯖ ﯗ ﯘ",
+            transliteration: "alladhī jaʿala lakum mina l-shajari l-akhḍari nāran fa-idhā antum min'hu tūqidūna",
+            translation: "The One Who made for you from the tree [the] green  fire and behold You from it ignite",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036080.mp3",
             fingerprint: {
                 duration: 14.68,
@@ -1214,9 +1214,9 @@ const QURAN_DATA = {
         {
             id: 81,
             ayah: 81,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯚ ﯛ ﯜ ﯝ ﯞ ﯟ ﯠ ﯡ ﯢ ﯣﯤ ﯥ ﯦ ﯧ ﯨ",
+            transliteration: "awalaysa alladhī khalaqa l-samāwāti wal-arḍa biqādirin ʿalā an yakhluqa mith'lahum balā wahuwa l-khalāqu l-ʿalīmu",
+            translation: "Is it not (He) Who created the heavens and the earth Able to [that] create (the) like of them Yes, indeed and He (is) the Supreme Creator the All-Knower",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036081.mp3",
             fingerprint: {
                 duration: 18.04,
@@ -1229,9 +1229,9 @@ const QURAN_DATA = {
         {
             id: 82,
             ayah: 82,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯪ ﯫ ﯬ ﯭ ﯮ ﯯ ﯰ ﯱ ﯲ ﯳ",
+            transliteration: "innamā amruhu idhā arāda shayan an yaqūla lahu kun fayakūnu",
+            translation: "Only His Command when He intends a thing that He says to it Be and it is",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036082.mp3",
             fingerprint: {
                 duration: 17.26,
@@ -1244,9 +1244,9 @@ const QURAN_DATA = {
         {
             id: 83,
             ayah: 83,
-            arabic: "",
-            transliteration: "",
-            translation: "",
+            arabic: "ﯵ ﯶ ﯷ ﯸ ﯹ ﯺ ﯻ ﯼ",
+            transliteration: "fasub'ḥāna alladhī biyadihi malakūtu kulli shayin wa-ilayhi tur'jaʿūna",
+            translation: "So glory be (to) the One who in Whose hand is (the) dominion (of) all things and to Him you will be returned",
             audioUrl: "https://verses.quran.com/Alafasy/mp3/036083.mp3",
             fingerprint: {
                 duration: 12.51,
