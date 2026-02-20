@@ -1,0 +1,197 @@
+{
+  "surah": 36,
+  "reciter": 7,
+  "generatedAt": "2026-02-20T18:40:49.266Z",
+  "fingerprints": [
+    {
+      "chapter": 36,
+      "verse": 1,
+      "duration": 4.56,
+      "fingerprint": {
+        "duration": 4.56,
+        "energy": 0.0615,
+        "zcr": 0.0478,
+        "centroid": 9902,
+        "dominantFreqs": [
+          215,
+          237,
+          258,
+          280
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036001.mp3",
+      "generatedAt": "2026-02-20T18:37:36.201Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 2,
+      "duration": 4.78,
+      "fingerprint": {
+        "duration": 4.78,
+        "energy": 0.0752,
+        "zcr": 0.044,
+        "centroid": 9726,
+        "dominantFreqs": [
+          323,
+          345,
+          388,
+          431
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036002.mp3",
+      "generatedAt": "2026-02-20T18:37:36.825Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 3,
+      "duration": 5.81,
+      "fingerprint": {
+        "duration": 5.81,
+        "energy": 0.0694,
+        "zcr": 0.0383,
+        "centroid": 10637,
+        "dominantFreqs": [
+          258,
+          280,
+          301,
+          409
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036003.mp3",
+      "generatedAt": "2026-02-20T18:37:37.451Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 4,
+      "duration": 6.21,
+      "fingerprint": {
+        "duration": 6.21,
+        "energy": 0.0654,
+        "zcr": 0.0385,
+        "centroid": 9957,
+        "dominantFreqs": [
+          258,
+          280,
+          1055,
+          1077
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036004.mp3",
+      "generatedAt": "2026-02-20T18:37:38.096Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 5,
+      "duration": 6.52,
+      "fingerprint": {
+        "duration": 6.52,
+        "energy": 0.0589,
+        "zcr": 0.0321,
+        "centroid": 9847,
+        "dominantFreqs": [
+          129,
+          237,
+          258,
+          280
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036005.mp3",
+      "generatedAt": "2026-02-20T18:37:38.733Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 6,
+      "duration": 13.78,
+      "fingerprint": {
+        "duration": 13.78,
+        "energy": 0.0717,
+        "zcr": 0.0483,
+        "centroid": 10524,
+        "dominantFreqs": [
+          194,
+          215,
+          237,
+          258
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036006.mp3",
+      "generatedAt": "2026-02-20T18:37:39.405Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 7,
+      "duration": 9.1,
+      "fingerprint": {
+        "duration": 9.1,
+        "energy": 0.0703,
+        "zcr": 0.0347,
+        "centroid": 9899,
+        "dominantFreqs": [
+          172,
+          194,
+          258,
+          323
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036007.mp3",
+      "generatedAt": "2026-02-20T18:37:40.101Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 8,
+      "duration": 15.15,
+      "fingerprint": {
+        "duration": 15.15,
+        "energy": 0.0664,
+        "zcr": 0.0421,
+        "centroid": 10322,
+        "dominantFreqs": [
+          215,
+          237,
+          258,
+          474
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036008.mp3",
+      "generatedAt": "2026-02-20T18:37:40.884Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 9,
+      "duration": 15.56,
+      "fingerprint": {
+        "duration": 15.56,
+        "energy": 0.068,
+        "zcr": 0.0438,
+        "centroid": 9765,
+        "dominantFreqs": [
+          258,
+          280,
+          301,
+          409
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036009.mp3",
+      "generatedAt": "2026-02-20T18:37:41.553Z"
+    },
+    {
+      "chapter": 36,
+      "verse": 10,
+      "duration": 12.97,
+      "fingerprint": {
+        "duration": 12.97,
+        "energy": 0.0798,
+        "zcr": 0.051,
+        "centroid": 9701,
+        "dominantFreqs": [
+          345,
+          366,
+          388,
+          409
+        ]
+      },
+      "audioUrl": "https://verses.quran.com/Alafasy/mp3/036010.mp3",
+      "generatedAt": "2026-02-20T18:37:42.296Z"
+    }
+  ]
+}

@@ -38,26 +38,6 @@ class QuranAPI {
         }
     }
 
-    // Get all verses for a chapter with audio
-    async getVersesWithAudio(chapterNumber, reciterId = this.reciterId) {
-        const cacheKey = `verses_${chapterNumber}_${reciterId}`;
-        if (this.cache.has(cacheKey)) {
-            return this.cache.get(cacheKey);
-        }
-
-        try {
-            const response = await fetch(
-                `${this.baseUrl}/verses/by_chapter/${chapterNumber}?language=en&words=true&audio_recitation=${reciterId}`
-            );
-            const data = await response.json();
-            this.cache.set(cacheKey, data.verses);
-            return data.verses;
-        } catch (error) {
-            console.error('Error fetching verses:', error);
-            throw error;
-        }
-    }
-
     // Get single verse with audio
     async getVerse(chapterNumber, verseNumber, reciterId = this.reciterId) {
         try {
@@ -191,6 +171,26 @@ class QuranAPI {
             return data.recitations;
         } catch (error) {
             console.error('Error fetching reciters:', error);
+            throw error;
+        }
+    }
+
+    // Get all verses for a chapter with audio AND text
+    async getVersesWithAudio(chapterNumber, reciterId = this.reciterId) {
+        const cacheKey = `verses_full_${chapterNumber}_${reciterId}`;
+        if (this.cache.has(cacheKey)) {
+            return this.cache.get(cacheKey);
+        }
+
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/verses/by_chapter/${chapterNumber}?language=en&words=true&audio_recitation=${reciterId}&translations=131&transliterations=131`
+            );
+            const data = await response.json();
+            this.cache.set(cacheKey, data.verses);
+            return data.verses;
+        } catch (error) {
+            console.error('Error fetching verses:', error);
             throw error;
         }
     }

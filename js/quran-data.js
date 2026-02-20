@@ -18,11 +18,11 @@ const QURAN_DATA = {
                 translation: "Ya, Seen.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036001.mp3",
                 fingerprint: {
-                    duration: 2.5,
-                    energy: 0.18,
-                    zcr: 0.12,
-                    centroid: 950,
-                    dominantFreqs: [280, 450, 680, 920]
+                    duration: 4.56,
+                    energy: 0.0615,
+                    zcr: 0.0478,
+                    centroid: 9902,
+                    dominantFreqs: [215, 237, 258, 280]
                 }
             },
             {
@@ -33,12 +33,12 @@ const QURAN_DATA = {
                 translation: "By the wise Qur'an.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036002.mp3",
                 fingerprint: {
-                    duration: 3.2,
-                    energy: 0.22,
-                    zcr: 0.14,
-                    centroid: 1050,
-                    dominantFreqs: [300, 480, 720, 980]
-                }
+                duration: 4.78,
+                energy: 0.0752,
+                zcr: 0.044,
+                centroid: 9726,
+                dominantFreqs: [323, 345, 388, 431]
+            }
             },
             {
                 id: 3,
@@ -48,11 +48,11 @@ const QURAN_DATA = {
                 translation: "Indeed you are from among the messengers.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036003.mp3",
                 fingerprint: {
-                    duration: 3.8,
-                    energy: 0.24,
-                    zcr: 0.15,
-                    centroid: 1100,
-                    dominantFreqs: [320, 500, 750, 1000]
+                    duration: 5.81,
+                    energy: 0.0694,
+                    zcr: 0.0383,
+                    centroid: 10637,
+                    dominantFreqs: [258, 280, 301, 409]
                 }
             },
             {
@@ -63,11 +63,11 @@ const QURAN_DATA = {
                 translation: "On a straight path.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036004.mp3",
                 fingerprint: {
-                    duration: 3.5,
-                    energy: 0.23,
-                    zcr: 0.14,
-                    centroid: 1080,
-                    dominantFreqs: [310, 490, 740, 990]
+                    duration: 6.21,
+                    energy: 0.0654,
+                    zcr: 0.0385,
+                    centroid: 9957,
+                    dominantFreqs: [258, 280, 1055, 1077]
                 }
             },
             {
@@ -78,11 +78,11 @@ const QURAN_DATA = {
                 translation: "A revelation of the Exalted in Might, the Merciful.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036005.mp3",
                 fingerprint: {
-                    duration: 4.0,
-                    energy: 0.25,
-                    zcr: 0.16,
-                    centroid: 1120,
-                    dominantFreqs: [330, 510, 760, 1010]
+                    duration: 6.52,
+                    energy: 0.0589,
+                    zcr: 0.0321,
+                    centroid: 9847,
+                    dominantFreqs: [129, 237, 258, 280]
                 }
             },
             {
@@ -93,11 +93,11 @@ const QURAN_DATA = {
                 translation: "That you may warn a people whose forefathers were not warned.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036006.mp3",
                 fingerprint: {
-                    duration: 5.2,
-                    energy: 0.27,
-                    zcr: 0.17,
-                    centroid: 1150,
-                    dominantFreqs: [340, 520, 780, 1030]
+                    duration: 13.78,
+                    energy: 0.0717,
+                    zcr: 0.0483,
+                    centroid: 10524,
+                    dominantFreqs: [194, 215, 237, 258]
                 }
             },
             {
@@ -108,11 +108,11 @@ const QURAN_DATA = {
                 translation: "Already the word has come into effect upon most of them.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036007.mp3",
                 fingerprint: {
-                    duration: 4.8,
-                    energy: 0.26,
-                    zcr: 0.16,
-                    centroid: 1130,
-                    dominantFreqs: [335, 515, 775, 1020]
+                    duration: 9.1,
+                    energy: 0.0703,
+                    zcr: 0.0347,
+                    centroid: 9899,
+                    dominantFreqs: [172, 194, 258, 323]
                 }
             },
             {
@@ -123,11 +123,11 @@ const QURAN_DATA = {
                 translation: "So they do not believe.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036008.mp3",
                 fingerprint: {
-                    duration: 3.0,
-                    energy: 0.21,
-                    zcr: 0.13,
-                    centroid: 1000,
-                    dominantFreqs: [290, 470, 710, 960]
+                    duration: 15.15,
+                    energy: 0.0664,
+                    zcr: 0.0421,
+                    centroid: 10322,
+                    dominantFreqs: [215, 237, 258, 474]
                 }
             },
             {
@@ -138,11 +138,11 @@ const QURAN_DATA = {
                 translation: "Indeed, We have put shackles on their necks.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036009.mp3",
                 fingerprint: {
-                    duration: 4.5,
-                    energy: 0.25,
-                    zcr: 0.15,
-                    centroid: 1100,
-                    dominantFreqs: [325, 505, 755, 1005]
+                    duration: 15.56,
+                    energy: 0.068,
+                    zcr: 0.0438,
+                    centroid: 9765,
+                    dominantFreqs: [258, 280, 301, 409]
                 }
             },
             {
@@ -153,11 +153,11 @@ const QURAN_DATA = {
                 translation: "So they are to the chins.",
                 audioUrl: "https://verses.quran.com/Alafasy/mp3/036010.mp3",
                 fingerprint: {
-                    duration: 3.3,
-                    energy: 0.22,
-                    zcr: 0.14,
-                    centroid: 1040,
-                    dominantFreqs: [305, 485, 725, 975]
+                    duration: 12.97,
+                    energy: 0.0798,
+                    zcr: 0.051,
+                    centroid: 9701,
+                    dominantFreqs: [345, 366, 388, 409]
                 }
             }
             // Add more ayahs as fingerprints are generated

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AyatFinder - Fingerprint Builder</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 p-4">
@@ -15,7 +15,7 @@
         <header class="mb-8">
             <div class="glass-card rounded-3xl p-6">
                 <h1 class="text-2xl font-bold text-white mb-2">🎵 Fingerprint Builder</h1>
-                <p class="text-emerald-300">Generate audio fingerprints from Quran.com API</p>
+                <p class="text-emerald-300">Generate complete fingerprint database from Quran.com API</p>
             </div>
         </header>
 
@@ -48,14 +48,10 @@
                 </div>
             </div>
 
-            <div class="mt-4">
-                <label class="text-emerald-300 text-sm font-medium mb-2 block">Verse Range</label>
-                <div class="flex gap-4">
-                    <input type="number" id="verse-from" placeholder="From" value="1" 
-                        class="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
-                    <input type="number" id="verse-to" placeholder="To" value="10" 
-                        class="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white">
-                </div>
+            <div class="mt-4 p-4 bg-emerald-900/30 rounded-xl border border-emerald-500/30">
+                <p class="text-emerald-300 text-sm">
+                    ℹ️ <strong>Full Surah Mode:</strong> This will generate fingerprints for ALL verses in the selected surah automatically.
+                </p>
             </div>
         </div>
 
@@ -65,7 +61,7 @@
             
             <div class="mb-4">
                 <div class="flex justify-between text-sm text-emerald-300 mb-2">
-                    <span id="progress-text">Processing verse 1 of 10</span>
+                    <span id="progress-text">Processing verse 1 of 83</span>
                     <span id="progress-percentage">0%</span>
                 </div>
                 <div class="w-full bg-white/10 rounded-full h-4">
@@ -76,6 +72,7 @@
             <div id="current-verse" class="bg-white/5 rounded-xl p-4">
                 <p class="text-white font-medium mb-2">Current Verse:</p>
                 <p id="current-verse-text" class="text-emerald-300 text-sm">-</p>
+                <p id="current-verse-arabic" class="arabic-text text-white text-lg mt-2">-</p>
                 <div class="flex gap-4 mt-3 text-xs text-emerald-300/70">
                     <span>Duration: <span id="current-duration" class="text-white">-</span></span>
                     <span>Energy: <span id="current-energy" class="text-white">-</span></span>
@@ -89,12 +86,21 @@
             <h2 class="text-lg font-bold text-white mb-4">Generated Fingerprints</h2>
             
             <div class="flex gap-3 mb-4">
-                <button onclick="downloadFingerprints()" class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition">
+                <button onclick="downloadJSON()" class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition">
                     📥 Download JSON
+                </button>
+                <button onclick="downloadQuranDataJS()" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">
+                    📝 Download quran-data.js
                 </button>
                 <button onclick="copyToClipboard()" class="flex-1 bg-white/10 text-white py-3 rounded-xl font-bold hover:bg-white/20 transition">
                     📋 Copy to Clipboard
                 </button>
+            </div>
+
+            <div class="p-4 bg-emerald-900/30 rounded-xl border border-emerald-500/30 mb-4">
+                <p class="text-emerald-300 text-sm">
+                    ✅ <strong>Complete Format:</strong> Includes Arabic text, transliteration, translation, and fingerprints - ready to use!
+                </p>
             </div>
 
             <div id="fingerprints-list" class="space-y-3 max-h-96 overflow-y-auto">
@@ -106,7 +112,7 @@
         <div class="glass-card rounded-3xl p-6">
             <button id="start-btn" onclick="startGeneration()" 
                 class="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all active:scale-95 shadow-lg">
-                🚀 Start Fingerprint Generation
+                🚀 Generate Full Surah Fingerprints
             </button>
             
             <button id="stop-btn" onclick="stopGeneration()" disabled
@@ -120,9 +126,10 @@
         </div>
     </div>
 
-    <!-- Scripts --->
+    <!-- ⭐ SCRIPTS - MUST BE IN THIS ORDER ⭐ -->
+    <script src="js/quran-data.js"></script>
     <script src="js/quran-api.js"></script>
     <script src="js/audio-processor.js"></script>
-    <script src="js/admin.js"></script>>
+    <script src="js/admin.js"></script>
 </body>
 </html>
